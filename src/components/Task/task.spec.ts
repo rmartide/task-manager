@@ -1,20 +1,12 @@
-import { shallowMount } from "@vue/test-utils";
+import { render, configure } from '@testing-library/vue';
 import Task from "@/components/Task.vue";
-/* 
-describe("Task.vue", () => {
-  it("renders props.msg when passed", () => {
-    const msg = "new message";
-    const wrapper = shallowMount(Task, {
-      propsData: { msg }
-    });
-    expect(wrapper.text()).toMatch(msg);
-  });
-});
- */
 
+configure({ testIdAttribute: 'data-spec' });
 
 describe("Task.vue", () => {
   it("component renders", () => {
-    expect(1).toEqual(2);
+    const { getByTestId } = render(Task);
+
+    getByTestId('component');
   });
 });
