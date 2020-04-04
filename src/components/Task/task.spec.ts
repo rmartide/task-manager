@@ -1,5 +1,5 @@
 import { render, configure } from '@testing-library/vue';
-import Task from "@/components/Task.vue";
+import Task from "@/components/Task/Task.vue";
 
 configure({ testIdAttribute: 'data-spec' });
 
