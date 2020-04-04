@@ -1,11 +1,16 @@
 // https://docs.cypress.io/api/introduction/api.html
+describe("Tasks management", () => {
+	it("Create new task", () => {
+		cy.visit("/");
 
-describe("My First Test", () => {
-  it("Visits the app root url", () => {
-    cy.visit("/");
-    cy.get('[data-spec="taskName"]').should('exist');
-    cy.get('[data-spec="taskDescription"]').should('exist');
-    cy.get('[data-spec="taskStatus"]').should('exist');
-    cy.get('[data-spec="taskCompleteButton"]').should('exist');
-  });
+		cy.get('[data-spec="addTaskButton"]').click();
+
+		cy.get('[data-spec="taskNameInput"').type("New task");
+
+		cy.get('[data-spec="taskDescriptionInput"]').type("New Description");
+
+		cy.get('[data-spec="createTaskButton"').click();
+
+		cy.contains("New task create successfully");
+	});
 });
