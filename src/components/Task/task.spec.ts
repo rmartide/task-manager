@@ -5,8 +5,12 @@ configure({ testIdAttribute: "data-spec" });
 
 describe("Task.vue", () => {
 	it("component renders", () => {
-		const { getByTestId } = render(Task);
+		const { getByTestId } = render(Task as any);
 
-		getByTestId("component");
+		getByTestId("taskName");
+
+		getByTestId("taskDescription");
+
+		getByTestId("completeTaskButton");
 	});
 });

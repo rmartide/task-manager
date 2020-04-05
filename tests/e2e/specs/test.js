@@ -5,12 +5,16 @@ describe("Tasks management", () => {
 
 		cy.get('[data-spec="addTaskButton"]').click();
 
+		cy.url().should("include", "/create");
+
 		cy.get('[data-spec="taskNameInput"').type("New task");
 
 		cy.get('[data-spec="taskDescriptionInput"]').type("New Description");
 
 		cy.get('[data-spec="createTaskButton"').click();
+		// This has to be in an env variable
+		const apiServer = "http://localhost:8081";
 
-		cy.contains("New task create successfully");
+		cy.url().should("eq", `${apiServer}/`);
 	});
 });
