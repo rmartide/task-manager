@@ -1,8 +1,20 @@
 // https://docs.cypress.io/api/introduction/api.html
+describe("Tasks management", () => {
+	it("Create new task", () => {
+		cy.visit("/");
 
-describe("My First Test", () => {
-  it("Visits the app root url", () => {
-    cy.visit("/");
-    cy.contains("h1", "Welcome to Your Vue.js + TypeScript App");
-  });
+		cy.get('[data-spec="addTaskButton"]').click();
+
+		cy.url().should("include", "/create");
+
+		cy.get('[data-spec="taskNameInput"').type("New task");
+
+		cy.get('[data-spec="taskDescriptionInput"]').type("New Description");
+
+		cy.get('[data-spec="createTaskButton"').click();
+		// This has to be in an env variable
+		const apiServer = "http://localhost:8081";
+
+		cy.url().should("eq", `${apiServer}/`);
+	});
 });

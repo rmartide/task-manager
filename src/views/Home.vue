@@ -1,18 +1,20 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+	<div class="home">
+		<h1>home</h1>
+		<button data-spec="addTaskButton" @click="goToCreate">Add task</button>
+	</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld
-  }
+	name: "Home",
+	components: {},
+	methods: {
+		goToCreate() {
+			this.$router.push("create");
+		}
+	}
 };
 </script>
