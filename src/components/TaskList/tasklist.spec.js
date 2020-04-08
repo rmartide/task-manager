@@ -1,4 +1,4 @@
-import { render, configure } from "@testing-library/vue";
+import { render, configure, queryByTestId } from "@testing-library/vue";
 import TaskList from "@/components/TaskList/TaskList.vue";
 
 import "@testing-library/jest-dom";
@@ -14,9 +14,8 @@ describe("TaskList.vue", () => {
 
 	it("Empty component shows: There are no tasks", () => {
 		const tasks = [];
-		const component = TaskList;
 
-		const { getByTestId } = render(component, {
+		const { getByTestId } = render(TaskList, {
 			props: {
 				tasks
 			}
@@ -25,5 +24,21 @@ describe("TaskList.vue", () => {
 		const expectedValue = "There are no tasks";
 
 		expect(getByTestId("noTasksText")).toHaveTextContent(expectedValue);
+	});
+
+	it("Empty component shows: There are no tasks", () => {
+		const task = {
+			name: "task",
+			description: "description"
+		};
+		const tasks = [task];
+
+		const { queryByTestId } = render(TaskList, {
+			props: {
+				tasks
+			}
+		});
+
+		expect(queryByTestId("noTasksText")).toBeNull();
 	});
 });

@@ -1,6 +1,6 @@
 <template>
 	<div data-spec="taskList">
-		<span data-spec="noTasksText" v-if="tasks.length === 0">
+		<span data-spec="noTasksText" v-if="tasks && tasks.length === 0">
 			There are no tasks
 		</span>
 	</div>
