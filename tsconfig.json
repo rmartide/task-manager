@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "noImplicitAny": false,
     "baseUrl": ".",
     "types": [
       "webpack-env",
@@ -31,9 +32,11 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "src/services/api.js", "src/main.ts", "src/components/TaskList/tasklist.spec.js", "src/components/TaskForm/taskform.spec.js", "src/components/Task/task.spec.js", "src/router/index.js", "src/store/index.js"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/main.ts"
   ]
 }

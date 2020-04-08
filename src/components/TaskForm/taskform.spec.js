@@ -5,7 +5,7 @@ configure({ testIdAttribute: "data-spec" });
 
 describe("TaskForm.vue", () => {
 	it("component renders", () => {
-		const { getByTestId } = render(TaskForm as any);
+		const { getByTestId } = render(TaskForm);
 
 		getByTestId("taskNameInput");
 

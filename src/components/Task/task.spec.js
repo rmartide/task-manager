@@ -5,7 +5,7 @@ configure({ testIdAttribute: "data-spec" });
 
 describe("Task.vue", () => {
 	it("component renders", () => {
-		const { getByTestId } = render(Task as any);
+		const { getByTestId } = render(Task);
 
 		getByTestId("taskName");
 

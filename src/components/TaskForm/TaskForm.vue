@@ -2,7 +2,9 @@
 	<div>
 		<input type="text" data-spec="taskNameInput" />
 		<input type="text" data-spec="taskDescriptionInput" />
-		<button data-spec="createTaskButton" @click="createTask">Create task</button>
+		<button data-spec="createTaskButton" @click="createTask">
+			Create task
+		</button>
 	</div>
 </template>
 

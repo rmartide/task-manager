@@ -1,8 +1,10 @@
 <template>
 	<div>
-		<h3 data-spec="taskName">{{name}}</h3>
-		<span data-spec="taskDescription">{{description}}</span>
-		<button data-spec="completeTaskButton" v-if="!completed">Complete</button>
+		<h3 data-spec="taskName">{{ name }}</h3>
+		<span data-spec="taskDescription">{{ description }}</span>
+		<button data-spec="completeTaskButton" v-if="!completed">
+			Complete
+		</button>
 	</div>
 </template>
 
