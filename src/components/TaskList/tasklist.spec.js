@@ -26,7 +26,7 @@ describe("TaskList.vue", () => {
 		expect(getByTestId("noTasksText")).toHaveTextContent(expectedValue);
 	});
 
-	it("Empty component shows: There are no tasks", () => {
+	it("There is no message if there's at least one task", () => {
 		const task = {
 			name: "task",
 			description: "description"
@@ -40,5 +40,21 @@ describe("TaskList.vue", () => {
 		});
 
 		expect(queryByTestId("noTasksText")).toBeNull();
+	});
+
+	it("There's one element on the list for each task on the array", () => {
+		const task = {
+			name: "task",
+			description: "description"
+		};
+		const tasks = [task, task, task];
+
+		const { getAllByTestId } = render(TaskList, {
+			props: {
+				tasks
+			}
+		});
+
+		expect(getAllByTestId('taskComponent').length).toEqual(tasks.length);
 	});
 });
