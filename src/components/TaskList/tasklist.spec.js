@@ -1,4 +1,4 @@
-import { render, configure, queryByTestId } from "@testing-library/vue";
+import { render, configure } from "@testing-library/vue";
 import TaskList from "@/components/TaskList/TaskList.vue";
 
 import "@testing-library/jest-dom";
