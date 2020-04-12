@@ -1,6 +1,8 @@
 import { render, configure, fireEvent } from "@testing-library/vue";
 import Task from "@/components/Task/Task.vue";
 
+import "@testing-library/jest-dom";
+
 configure({ testIdAttribute: "data-spec" });
 
 describe("Task.vue", () => {
@@ -26,9 +28,9 @@ describe("Task.vue", () => {
 		expect(queryByTestId("completeTaskButton")).toBeNull();
 
 	});
-
-/* 	it("clicking the complete button changes the completed variable from false to true", async () => {
-		const { getByTestId, container } = render(Task,{
+/* 
+	it("clicking the complete button changes the completed variable from false to true", async () => {
+		const { getByTestId } = render(Task,{
 			data() {
 				return {
 					completed: false
@@ -39,8 +41,28 @@ describe("Task.vue", () => {
 		const button = queryByTestId("completeTaskButton");
 
 		await fireEvent.click(button);
-		
-		container.
+
+		// EXPECT MISSSING!!
 
 	}) */
+
+	it("renders props correctly", () => {
+
+		const name = 'Name';
+		const description = 'Description';
+
+		const { getByTestId } = render(Task, {
+			props: {
+				name: name,
+				description: description
+			}
+		}
+		);
+
+
+		expect(getByTestId("taskName")).toHaveTextContent(name);
+
+		expect(getByTestId("taskDescription")).toHaveTextContent(description);
+
+	})
 });
