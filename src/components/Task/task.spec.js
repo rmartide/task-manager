@@ -16,6 +16,19 @@ describe("Task.vue", () => {
 		getByTestId("completeTaskButton");
 	});
 
+	it("complete button renders if the task is not completed", () => {
+		const { getByTestId } = render(Task,{
+			data() {
+				return {
+					completed: false
+				}
+			}
+		});
+		
+		getByTestId("completeTaskButton");
+
+	});
+
 	it("complete button doesn't render if the task is completed", () => {
 		const { queryByTestId } = render(Task,{
 			data() {
@@ -28,9 +41,9 @@ describe("Task.vue", () => {
 		expect(queryByTestId("completeTaskButton")).toBeNull();
 
 	});
-/* 
-	it("clicking the complete button changes the completed variable from false to true", async () => {
-		const { getByTestId } = render(Task,{
+
+	it("clicking the complete button changes the completed variable from false to true and hides the button", async () => {
+		const { queryByTestId, getByTestId } = render(Task,{
 			data() {
 				return {
 					completed: false
@@ -38,13 +51,13 @@ describe("Task.vue", () => {
 			}
 		});
 
-		const button = queryByTestId("completeTaskButton");
+		const button = getByTestId("completeTaskButton");
 
 		await fireEvent.click(button);
 
-		// EXPECT MISSSING!!
+		expect(queryByTestId("completeTaskButton")).toBeNull();
 
-	}) */
+	})
 
 	it("renders props correctly", () => {
 

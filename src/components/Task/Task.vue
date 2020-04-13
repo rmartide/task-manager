@@ -2,7 +2,7 @@
 	<div>
 		<h3 data-spec="taskName">{{ name }}</h3>
 		<span data-spec="taskDescription">{{ description }}</span>
-		<button data-spec="completeTaskButton" v-if="!completed">
+		<button data-spec="completeTaskButton" v-if="!completed" @click="handleClick">
 			Complete
 		</button>
 	</div>
@@ -22,6 +22,10 @@ export default {
 			completed: false
 		};
 	},
-	components: {}
+	methods: {
+		handleClick() {
+			this.completed = true;
+		}
+	}
 };
 </script>
