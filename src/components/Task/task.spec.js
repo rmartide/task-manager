@@ -14,6 +14,8 @@ describe("Task.vue", () => {
 		getByTestId("taskDescription");
 
 		getByTestId("completeTaskButton");
+
+		getByTestId("taskStreak");
 	});
 
 	it("complete button renders if the task is not completed", () => {
@@ -57,17 +59,19 @@ describe("Task.vue", () => {
 
 		expect(queryByTestId("completeTaskButton")).toBeNull();
 
-	})
+	});
 
 	it("renders props correctly", () => {
 
 		const name = 'Name';
 		const description = 'Description';
+		const streak = 2;
 
 		const { getByTestId } = render(Task, {
 			props: {
 				name: name,
-				description: description
+				description: description,
+				streak: streak
 			}
 		}
 		);
@@ -76,6 +80,8 @@ describe("Task.vue", () => {
 		expect(getByTestId("taskName")).toHaveTextContent(name);
 
 		expect(getByTestId("taskDescription")).toHaveTextContent(description);
+		
+		expect(getByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
 
-	})
+	});
 });

@@ -2,6 +2,7 @@
 	<div>
 		<h3 data-spec="taskName">{{ name }}</h3>
 		<span data-spec="taskDescription">{{ description }}</span>
+		<span data-spec="taskStreak">Streak: {{streak}} days</span>
 		<button data-spec="completeTaskButton" v-if="!completed" @click="handleClick">
 			Complete
 		</button>
@@ -15,7 +16,8 @@ export default {
 	name: "Task",
 	props: {
 		name: String,
-		description: String
+		description: String,
+		streak: Number
 	},
 	data() {
 		return {
