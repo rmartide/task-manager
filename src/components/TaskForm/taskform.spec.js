@@ -1,8 +1,10 @@
 import { render, configure, fireEvent } from "@testing-library/vue";
 import TaskForm from "@/components/TaskForm/TaskForm.vue";
 import api from "@/services/api";
+import $router from "@/router/index";
 
 jest.mock("@/services/api");
+jest.mock("@/router/index");
 
 configure({ testIdAttribute: "data-spec" });
 
@@ -18,8 +20,6 @@ describe("TaskForm.vue", () => {
 	});
 
 	it("method createTask gets called", async () => {
-
-		const $router = { push: jest.fn(() => {})}
 
 		const { getByTestId } = render(TaskForm, {
 			mocks: {
