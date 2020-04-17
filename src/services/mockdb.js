@@ -1,8 +1,28 @@
-const tasks = localStorage.getItem("tasks");
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-if(tasks === null) {
-    localStorage.setItem("tasks", []);
+const saveTasks = () => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-export const newTask = (task) => {
+const createTask = (task) => {
+    tasks.push({...task, complete: false});
+    saveTasks();
+    return Promise.resolve();
+}
+
+const getAllTasks = () => {
+    return Promise.resolve(tasks);
+}
+
+const completeTask = (task) => {
+    const index = tasks.indexOf(task);
+    tasks[index].complete = true;
+    saveTasks();
+    return Promise.resolve();
+}
+
+export default {
+    createTask,
+    getAllTasks,
+    completeTask
 }

@@ -1,10 +1,9 @@
+import driver from './driver';
+
 const api = {
-	getAllTasks: () => {
-		return [];
-	},
-	createTask: (t) => {
-		return Promise.resolve(t);
-	}
+	getAllTasks: driver.getAllTasks,
+	createTask: driver.createTask,
+	completeTask: driver.completeTask
 };
 
 export default api;
