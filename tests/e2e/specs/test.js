@@ -17,4 +17,12 @@ describe("Tasks management", () => {
 
 		cy.url().should("eq", `${apiServer}/`);
 	});
+
+	it("Completing a task removes it from the list", () => {
+		cy.visit("/");
+
+		cy.get('[data-spec="completeTaskButton"').click();
+
+		
+	})
 });
