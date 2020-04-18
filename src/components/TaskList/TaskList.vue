@@ -4,7 +4,7 @@
 			There are no tasks
 		</span>
 		<div v-else-if="tasks && tasks.length !== 0">
-			<Task v-for="(task, index) in tasks" :key="`task_${index}`" data-spec="taskComponent"></Task>
+			<Task v-for="(task, index) in tasks" :key="`task_${index}`" data-spec="taskComponent" v-bind="task"></Task>
 		</div>
 	</div>
 </template>
