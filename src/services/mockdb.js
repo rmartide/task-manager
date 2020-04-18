@@ -4,6 +4,11 @@ const saveTasks = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+const clearStorage = () => {
+    localStorage.removeItem("tasks");
+    tasks = [];
+}
+
 const createTask = (task) => {
     tasks.push({...task, complete: false});
     saveTasks();
@@ -24,5 +29,6 @@ const completeTask = (task) => {
 export default {
     createTask,
     getAllTasks,
-    completeTask
+    completeTask,
+    clearStorage
 }

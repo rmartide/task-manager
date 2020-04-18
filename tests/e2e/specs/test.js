@@ -1,3 +1,6 @@
+import mockdb from '@/services/mockdb';
+
+
 // https://docs.cypress.io/api/introduction/api.html
 describe("Tasks management", () => {
 	it("Create new task", () => {
@@ -13,9 +16,17 @@ describe("Tasks management", () => {
 
 		cy.get('[data-spec="createTaskButton"').click();
 		// This has to be in an env variable
-		const apiServer = "http://localhost:8081";
+		const apiServer = "http://localhost:8080";
 
 		cy.url().should("eq", `${apiServer}/`);
+	});
+
+});
+
+/* describe("Completing a task", () => {
+	
+	beforeEach(() => {
+
 	});
 
 	it("Completing a task removes it from the list", () => {
@@ -25,4 +36,5 @@ describe("Tasks management", () => {
 
 		
 	})
-});
+})
+ */
