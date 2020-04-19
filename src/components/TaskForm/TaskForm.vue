@@ -22,10 +22,7 @@ export default {
 	},
 	methods: {
 		createTask: async function() {
-			await api.createTask({
-				name: this.name,
-				description: this.description
-			});
+			this.$store.dispatch('createTask', {name: this.name, description: this.description})
 
 			this.$router.push("/");
 		}

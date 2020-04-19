@@ -27,7 +27,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$store.dispatch('getCompletedTasks');
+		this.$store.dispatch('getUncompletedTasks');
 	}
 };
 </script>

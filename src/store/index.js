@@ -12,8 +12,8 @@ export default new Vuex.Store({
 		loadTasks(state, { tasks }) {
 			state.tasks = tasks;
 		},
-		loadCompletedTasks(state, { tasks }) {
-			state.tasks = tasks.filter(({completed}) => !completed);
+		loadUncompletedTasks(state, { tasks }) {
+			state.tasks = tasks.filter(task => task.complete === false);
 		},
 		addTask(state, { task }) {
 			state.tasks.push(task);
@@ -25,10 +25,10 @@ export default new Vuex.Store({
 
 			commit("loadTasks", { tasks });
 		},
-		async getCompletedTasks() {
+		async getUncompletedTasks() {
 			const tasks = await api.getAllTasks();
 
-			commit("loadCompletedTasks", { tasks });
+			commit("loadUncompletedTasks", { tasks });
 		},
 		async createTask({ name, description }) {
 			const task = await api.createTask({ name, description });
@@ -39,7 +39,7 @@ export default new Vuex.Store({
 		async completeTask(task) {
 			const tasks = await api.completeTask(task);
 
-			this.commit("loadCompletedTasks", { tasks })
+			this.commit("loadUncompletedTasks", { tasks })
 		}
 	},
 	modules: {}

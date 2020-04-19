@@ -18,7 +18,7 @@ export default {
 		name: String,
 		description: String,
 		streak: Number,
-		completed: Boolean
+		complete: Boolean
 	},
 	methods: {
 		handleClick() {
