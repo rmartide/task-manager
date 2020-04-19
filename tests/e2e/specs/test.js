@@ -1,5 +1,3 @@
-import mockdb from '@/services/mockdb';
-
 
 // https://docs.cypress.io/api/introduction/api.html
 describe("Tasks management", () => {
@@ -23,18 +21,18 @@ describe("Tasks management", () => {
 
 });
 
-/* describe("Completing a task", () => {
+describe("Completing a task", () => {
 	
 	beforeEach(() => {
-
+		cy.clearStorage();
+		cy.createTask("Name_1", "Description_1");
 	});
 
 	it("Completing a task removes it from the list", () => {
 		cy.visit("/");
 
-		cy.get('[data-spec="completeTaskButton"').click();
+		cy.get('[data-spec=completeTaskButton').click();
 
 		
 	})
 })
- */
