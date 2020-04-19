@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<input type="text" data-spec="taskNameInput" />
-		<input type="text" data-spec="taskDescriptionInput" />
+		<input type="text" data-spec="taskNameInput" v-model="name" />
+		<input type="text" data-spec="taskDescriptionInput" v-model="description" />
 		<button data-spec="createTaskButton" @click="createTask">
 			Create task
 		</button>

@@ -19,8 +19,7 @@ describe("TaskForm.vue", () => {
 		getByTestId("createTaskButton");
 	});
 
-	it("method createTask gets called", async () => {
-
+	it("method createTask gets called with expected parameters", async () => {
 		const { getByTestId } = render(TaskForm, {
 			mocks: {
 				$router,
@@ -28,11 +27,22 @@ describe("TaskForm.vue", () => {
 			}
 		});
 
+		const name = "Name";
+		const description = "Description";
+
+		const taskNameInput = getByTestId("taskNameInput");
+
+		await fireEvent.update(taskNameInput, name);
+
+		const taskDescriptionInput = getByTestId("taskDescriptionInput");
+
+		await fireEvent.update(taskDescriptionInput, description);
+
 		const button = getByTestId("createTaskButton");
 
 		await fireEvent.click(button);
 
-		expect($store.dispatch).toHaveBeenCalled();
+		expect($store.dispatch).toHaveBeenCalledWith('createTask', { name, description });
 
 		expect($router.push).toHaveBeenCalledWith("/");
 	});
