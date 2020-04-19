@@ -20,26 +20,26 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		async getAllTasks() {
+		async getAllTasks({commit}) {
 			const tasks = await api.getAllTasks();
 
 			commit("loadTasks", { tasks });
 		},
-		async getUncompletedTasks() {
+		async getUncompletedTasks({commit}) {
 			const tasks = await api.getAllTasks();
 
 			commit("loadUncompletedTasks", { tasks });
 		},
-		async createTask({ name, description }) {
+		async createTask({commit}, { name, description }) {
 			const task = await api.createTask({ name, description });
 
-			this.commit("addTask", { task });
+			commit("addTask", { task });
 		},
 
-		async completeTask(task) {
+		async completeTask({commit}, task) {
 			const tasks = await api.completeTask(task);
 
-			this.commit("loadUncompletedTasks", { tasks })
+			commit("loadUncompletedTasks", { tasks })
 		}
 	},
 	modules: {}
