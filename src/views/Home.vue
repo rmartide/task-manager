@@ -16,9 +16,9 @@ export default {
 	components: {
 		TaskList
 	},
-	data() {
-		return {
-			tasks: []
+	computed: {
+		tasks () {
+			return this.$store.state.tasks;
 		}
 	},
 	methods: {
@@ -27,9 +27,7 @@ export default {
 		}
 	},
 	mounted() {
-		api.getAllTasks().then(tasks => {
-			this.tasks = tasks;
-		})
+		this.$store.dispatch('getAllTasks');
 	}
 };
 </script>
