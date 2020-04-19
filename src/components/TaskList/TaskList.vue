@@ -4,7 +4,7 @@
 			There are no tasks
 		</span>
 		<div v-else-if="tasks && tasks.length !== 0">
-			<Task v-for="(task, index) in tasks" :key="`task_${index}`" data-spec="taskComponent" v-bind="task"></Task>
+			<Task v-for="(task, index) in tasks" :key="`task_${index}`" data-spec="taskComponent" v-bind="task" @complete-task="onCompleteTask(task)"></Task>
 		</div>
 	</div>
 </template>
@@ -25,6 +25,11 @@ export default {
 	},
 	components: {
 		Task
+	},
+	methods: {
+		onCompleteTask(task) {
+			this.$store.dispatch('completeTask', {task});
+		}
 	}
 };
 </script>

@@ -10,9 +10,10 @@ const clearStorage = () => {
 }
 
 const createTask = (task) => {
-    tasks.push({...task, complete: false});
+    const t = {...task, complete: false}
+    tasks.push(t);
     saveTasks();
-    return Promise.resolve();
+    return Promise.resolve(t);
 }
 
 const getAllTasks = () => {
@@ -23,7 +24,7 @@ const completeTask = (task) => {
     const index = tasks.indexOf(task);
     tasks[index].complete = true;
     saveTasks();
-    return Promise.resolve();
+    return Promise.resolve(tasks);
 }
 
 export default {

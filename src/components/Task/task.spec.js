@@ -18,49 +18,6 @@ describe("Task.vue", () => {
 		getByTestId("taskStreak");
 	});
 
-	it("complete button renders if the task is not completed", () => {
-		const { getByTestId } = render(Task,{
-			data() {
-				return {
-					completed: false
-				}
-			}
-		});
-		
-		getByTestId("completeTaskButton");
-
-	});
-
-	it("complete button doesn't render if the task is completed", () => {
-		const { queryByTestId } = render(Task,{
-			data() {
-				return {
-					completed: true
-				}
-			}
-		});
-		
-		expect(queryByTestId("completeTaskButton")).toBeNull();
-
-	});
-
-	it("clicking the complete button changes the completed variable from false to true and hides the button", async () => {
-		const { queryByTestId, getByTestId } = render(Task,{
-			data() {
-				return {
-					completed: false
-				}
-			}
-		});
-
-		const button = getByTestId("completeTaskButton");
-
-		await fireEvent.click(button);
-
-		expect(queryByTestId("completeTaskButton")).toBeNull();
-
-	});
-
 	it("renders props correctly", () => {
 
 		const name = 'Name';
@@ -71,7 +28,8 @@ describe("Task.vue", () => {
 			props: {
 				name: name,
 				description: description,
-				streak: streak
+				streak: streak,
+				completed: false
 			}
 		}
 		);
