@@ -31,7 +31,17 @@ describe("Completing a task", () => {
 	it("Completing a task removes it from the list", () => {
 		cy.visit("/");
 
-		cy.get('[data-spec=completeTaskButton').click();
+		cy.get('[data-spec=taskComponent]').within(() => {
+
+			cy.get('[data-spec=taskName]').contains("Name_1");
+
+			cy.get('[data-spec=taskDescription]').contains("Description_1");
+
+			cy.get('[data-spec=completeTaskButton]').click();
+		})
+
+		cy.get('[data-spec=taskComponent]').should('not.exist');
+
 
 		
 	})

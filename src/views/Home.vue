@@ -3,6 +3,7 @@
 		<h1>home</h1>
 		<TaskList :tasks="tasks"></TaskList>
 		<button data-spec="addTaskButton" @click="goToCreate">Add task</button>
+		<button @click="clearList">Clear list</button>
 	</div>
 </template>
 
@@ -24,6 +25,9 @@ export default {
 	methods: {
 		goToCreate() {
 			this.$router.push("create");
+		},
+		clearList() {
+			this.$store.dispatch('clearTasks')
 		}
 	},
 	mounted() {
