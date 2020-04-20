@@ -9,8 +9,8 @@
 
 <script>
 // @ is an alias to /src
-import TaskList from '@/components/TaskList/TaskList';
-import api from '../services/api';
+import {TaskList} from '@/components/';
+import api from '@/services/api';
 
 export default {
 	name: "Home",

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/Home"
+import {Home} from "@/views/";
 
 Vue.use(VueRouter);
 
@@ -16,7 +16,10 @@ const routes = [
 		// route level code-splitting
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
+		component: async () => {
+			const {About} = await import(/* webpackChunkName: "about" */ "@/views/");
+			return About;
+		}
 	},
 	{
 		path: "/create",
@@ -24,7 +27,10 @@ const routes = [
 		// route level code-splitting
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ "../views/Create.vue")
+		component: async () => {
+			const {Create} = await import(/* webpackChunkName: "create" */ "@/views/");
+			return Create;
+		}
 	}
 ];
 

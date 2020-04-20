@@ -11,7 +11,7 @@
 
 <script>
 // @ is an alias to /src
-import Task from '@/components/Task/Task';
+import {Task} from '@/components/';
 
 export default {
 	name: "TaskList",

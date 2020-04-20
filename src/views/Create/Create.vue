@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import TaskForm from "@/components/TaskForm/TaskForm";
+import {TaskForm} from "@/components/";
 
 export default {
 	name: "Create",
