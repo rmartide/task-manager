@@ -1,4 +1,3 @@
-
 // https://docs.cypress.io/api/introduction/api.html
 describe("Tasks management", () => {
 	it("Create new task", () => {
@@ -18,11 +17,9 @@ describe("Tasks management", () => {
 
 		cy.url().should("eq", `${apiServer}/`);
 	});
-
 });
 
 describe("Completing a task", () => {
-	
 	beforeEach(() => {
 		cy.clearStorage();
 		cy.createTask("Name_1", "Description_1");
@@ -31,18 +28,29 @@ describe("Completing a task", () => {
 	it("Completing a task removes it from the list", () => {
 		cy.visit("/");
 
-		cy.get('[data-spec=taskComponent]').within(() => {
+		cy.get("[data-spec=taskComponent]").within(() => {
+			cy.get("[data-spec=taskName]").contains("Name_1");
 
-			cy.get('[data-spec=taskName]').contains("Name_1");
+			cy.get("[data-spec=taskDescription]").contains("Description_1");
 
-			cy.get('[data-spec=taskDescription]').contains("Description_1");
+			cy.get("[data-spec=completeTaskButton]").click();
+		});
 
-			cy.get('[data-spec=completeTaskButton]').click();
-		})
+		cy.get("[data-spec=taskComponent]").should("not.exist");
+	});
+});
 
-		cy.get('[data-spec=taskComponent]').should('not.exist');
 
+describe("Routes", () => {
 
-		
-	})
-})
+	it("Visiting a route loads the correct page", () => {
+		cy.visit("/");
+
+		cy.get("[data-spec=pageTitle]").contains("Tasks to do");
+
+		cy.visit("/create")
+
+		cy.get("[data-spec=pageTitle]").contains("New task");
+
+	});
+});

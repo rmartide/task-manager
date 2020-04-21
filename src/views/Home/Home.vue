@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<h1>home</h1>
+		<h1 data-spec="pageTitle">Tasks to do</h1>
 		<TaskList :tasks="tasks"></TaskList>
 		<button data-spec="addTaskButton" @click="goToCreate">Add task</button>
 		<button @click="clearList">Clear list</button>

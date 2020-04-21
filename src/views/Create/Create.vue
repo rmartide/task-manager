@@ -1,6 +1,6 @@
 <template>
 	<div class="create">
-		<h1>new task</h1>
+		<h1 data-spec="pageTitle">New task</h1>
 		<TaskForm></TaskForm>
 	</div>
 </template>
