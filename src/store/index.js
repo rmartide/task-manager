@@ -34,8 +34,8 @@ export default new Vuex.Store({
 
 			commit("loadUncompletedTasks", { tasks });
 		},
-		async createTask({ commit }, { name, description }) {
-			const task = await api.createTask({ name, description });
+		async createTask({ commit }, t) {
+			const task = await api.createTask(t);
 
 			commit("addTask", { task });
 		},

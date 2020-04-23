@@ -7,50 +7,69 @@ import "@testing-library/jest-dom";
 // SE NECESITA COMPROBAR EL STATEEEEEEEEEEEEEEEEEEEEEEEEE
 
 jest.mock("@/services/api", () => {
-    return {
-    getAllTasks: jest.fn(() => Promise.resolve([])),
-    createTask: jest.fn(() => Promise.resolve({name: 'name', description: 'description', complete: false})),
-    completeTask: jest.fn(() => Promise.resolve([])),
-}
+	const task1 = { name: "name1", description: "description1", complete: false };
+	const task2 = { name: "name2", description: "description2", complete: false };
+	const task3 = { name: "name3", description: "description3", complete: false };
+	const task4 = { name: "name4", description: "description4", complete: true };
+	const tasks = [task1, task2, task3, task4];
+	return {
+		getAllTasks: jest.fn(() => Promise.resolve(tasks)),
+		createTask: jest.fn((t) => Promise.resolve(t)),
+		completeTask: jest.fn((t) => {
+			const result = [...tasks];
+			const index = result.findIndex(x => x.name === t.name && x.description === t.description);
+			result[index].complete = true;
+			return Promise.resolve(result);
+		})
+	};
 });
 
 describe("action tests", () => {
-
-    beforeEach(() => {
-        store.state.tasks = [];
-    })
+	beforeEach(() => {
+		store.state.tasks = [];
+	});
 
 	it("getAllTasks", async () => {
-
-        await store.dispatch("getAllTasks");
-
-        expect(api.getAllTasks).toHaveBeenCalled();
-        
-    });
-    
-    it("getUncompletedTasks", async () => {
-
-        await store.dispatch("getUncompletedTasks");
+		await store.dispatch("getAllTasks");
 
         expect(api.getAllTasks).toHaveBeenCalled();
         
-    });
-    
-    it("createTask", async () => {
+		expect(store.state.tasks.length).toEqual(4);
+	});
 
-        await store.dispatch("createTask", {name: 'name', description: 'description'});
+	it("getUncompletedTasks", async () => {
+		await store.dispatch("getUncompletedTasks");
+
+        expect(api.getAllTasks).toHaveBeenCalled();
+        
+        expect(store.state.tasks.length).toEqual(3);
+        
+        expect(store.state.tasks.find(t => t.name === "name4" && t.description === "description4")).toBeUndefined();
+	});
+
+	it("createTask", async () => {
+        const expected = { name: "name5", description: "description5" };
+
+		await store.dispatch("createTask", expected);
 
         expect(api.createTask).toHaveBeenCalled();
         
-    });
-    
-    it("completeTask", async () => {
+        expect(store.state.tasks.length).toEqual(1);
 
-        await store.dispatch("completeTask", { task: {name: 'name', description: 'description'} });
+        const received = store.state.tasks[0];
+    
+        expect(received.name).toEqual(expected.name);
+        expect(received.description).toEqual(expected.description);
+        expect(received.complete).toBeFalsy();
+	});
+
+	it("completeTask", async () => {
+		await store.dispatch("completeTask", { task: { name: "name1", description: "description1" } });
 
         expect(api.completeTask).toHaveBeenCalled();
         
-    });
-
-
+        expect(store.state.tasks.length).toEqual(2);
+        
+        expect(store.state.tasks.find(t => t.name === "name1" && t.description === "description1")).toBeUndefined();
+	});
 });
