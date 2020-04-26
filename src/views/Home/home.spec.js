@@ -17,7 +17,7 @@ import "@testing-library/jest-dom";
 
 configure({ testIdAttribute: "data-spec" });
 
-describe("Task.vue", () => {    
+describe("Home.vue", () => {    
 	it("component renders", () => {
 		const { getByTestId } = render(Home, {
             mocks: {

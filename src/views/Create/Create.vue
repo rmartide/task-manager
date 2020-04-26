@@ -1,7 +1,7 @@
 <template>
 	<div class="create">
 		<h1 data-spec="pageTitle">New task</h1>
-		<TaskForm></TaskForm>
+		<TaskForm data-spec="taskForm"></TaskForm>
 	</div>
 </template>
 
