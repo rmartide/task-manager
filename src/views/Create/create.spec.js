@@ -6,11 +6,21 @@ import "@testing-library/jest-dom";
 configure({ testIdAttribute: "data-spec" });
 
 describe("Create.vue", () => {    
-	it("component renders", () => {
+	it("Component renders", () => {
 		const { getByTestId } = render(Create);
 
 		getByTestId("pageTitle");
 
 		getByTestId("taskForm");
 	});
+
+	it("Component elements contain the expected text", () => {
+
+		const expectedTitle = "New task";
+
+		const { getByTestId } = render(Create);
+
+		expect(getByTestId("pageTitle")).toHaveTextContent(expectedTitle);
+
+	})
 });
