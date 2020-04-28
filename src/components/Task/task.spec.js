@@ -18,13 +18,43 @@ describe("Task.vue", () => {
 		getByTestId("taskStreak");
 	});
 
-	it("renders props correctly", () => {
+	it("renders props correctly for showTime = true", () => {
 
 		const name = 'Name';
 		const description = 'Description';
 		const streak = 2;
 
-		const { getByTestId } = render(Task, {
+		const { getByTestId, queryByTestId } = render(Task, {
+			props: {
+				name: name,
+				description: description,
+				streak: streak,
+				completed: false,
+				showTime: true
+			}
+		}
+		);
+
+
+		expect(getByTestId("taskName")).toHaveTextContent(name);
+
+		expect(queryByTestId("taskDescription")).toBeNull();
+		
+		expect(queryByTestId("taskStreak")).toBeNull();
+
+		expect(queryByTestId("completeTaskButton")).toBeNull();
+
+
+	});
+
+
+	it("renders props correctly for showTime = false", () => {
+
+		const name = 'Name';
+		const description = 'Description';
+		const streak = 2;
+
+		const { getByTestId, queryByTestId } = render(Task, {
 			props: {
 				name: name,
 				description: description,
@@ -37,9 +67,28 @@ describe("Task.vue", () => {
 
 		expect(getByTestId("taskName")).toHaveTextContent(name);
 
-		expect(getByTestId("taskDescription")).toHaveTextContent(description);
+		expect(queryByTestId("taskDescription")).toHaveTextContent(description);
 		
-		expect(getByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
+		expect(queryByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
+
+		getByTestId("completeTaskButton");
+	});
+
+	it("Clicking on the complete button emmits complete-task event", async () => {
+
+		const $emit = jest.fn(() => {});
+
+		const { getByTestId } = render(Task, {
+			mocks: {
+				$emit
+			}
+		});
+
+		const button = getByTestId("completeTaskButton");
+
+		await fireEvent.click(button);
+
+		expect($emit).toBeCalledWith('complete-task');
 
 	});
 });
