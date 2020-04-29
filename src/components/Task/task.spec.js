@@ -67,9 +67,9 @@ describe("Task.vue", () => {
 
 		expect(getByTestId("taskName")).toHaveTextContent(name);
 
-		expect(queryByTestId("taskDescription")).toHaveTextContent(description);
+		expect(getByTestId("taskDescription")).toHaveTextContent(description);
 		
-		expect(queryByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
+		expect(getByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
 
 		getByTestId("completeTaskButton");
 	});

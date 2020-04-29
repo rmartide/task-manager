@@ -1,22 +1,46 @@
-import { render, configure } from "@testing-library/vue";
+import { render, configure, queryByTestId } from "@testing-library/vue";
 import { Details } from "@/views";
+import api from "@/services/api";
+import { mockData } from "@/services/mockdata";
 
 import "@testing-library/jest-dom";
+
+jest.mock("@/services/api", () => {
+	return {
+		getTask: jest.fn(() => {
+			return Promise.resolve(mockData.task1);
+		})
+	};
+});
 
 configure({ testIdAttribute: "data-spec" });
 
 describe("Details.vue", () => {
 	it("component renders", () => {
-		const { getByTestId } = render(Details);
+		const { queryByTestId } = render(Details);
 
-		getByTestId("pageTitle");
-    });
-    
-    it("When it receives an id it renders the correct task", () => {
+        expect(queryByTestId("pageTitle")).toBeNull();
+        expect(queryByTestId("taskName")).toBeNull();
+        expect(queryByTestId("taskDescription")).toBeNull();
+	});
 
-        const { getByTestId } = render(Details);
-        
-        getByTestId('taskComponent');
+	it("When it receives an id it renders the correct task", () => {
+		const { task1 } = mockData;
+		const { getByTestId } = render(Details, {
+			data() {
+				return {
+					task: task1
+				};
+			},
+			props: {
+				id: task1.id
+			}
+		});
 
-    })
+		expect(api.getTask).toBeCalledWith(task1.id);
+		expect(api.getTask()).resolves.toBe(task1);
+
+        expect(getByTestId("taskName")).toHaveTextContent(task1.name);
+        expect(getByTestId("taskDescription")).toHaveTextContent(task1.description);
+	});
 });

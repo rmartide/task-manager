@@ -1,3 +1,5 @@
+import {mockData} from './mockdata';
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const saveTasks = () => {
@@ -27,9 +29,14 @@ const completeTask = (task) => {
     return Promise.resolve(tasks);
 }
 
+const getTask = (id) => {
+    return Promise.resolve(mockData.task1);
+}
+
 export default {
     createTask,
     getAllTasks,
     completeTask,
-    clearStorage
+    clearStorage,
+    getTask
 }

@@ -1,4 +1,4 @@
-const task1 = { name: "name1", description: "description1", complete: false };
+const task1 = { name: "name1", description: "description1", complete: false, id: 1, streak: 5 };
 const task2 = { name: "name2", description: "description2", complete: false };
 const task3 = { name: "name3", description: "description3", complete: false };
 const task4 = { name: "name4", description: "description4", complete: true };
