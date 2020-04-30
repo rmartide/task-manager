@@ -30,7 +30,8 @@ const completeTask = (task) => {
 }
 
 const getTask = (id) => {
-    return Promise.resolve(mockData.task1);
+    const task = tasks.find(t => t.id === id)
+    return Promise.resolve(task);
 }
 
 export default {

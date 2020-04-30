@@ -1,15 +1,13 @@
 import { render, configure, queryByTestId } from "@testing-library/vue";
 import { Details } from "@/views";
 import api from "@/services/api";
-import { mockData } from "@/services/mockdata";
+import { mockData, mockImplementation } from "@/services/mockdata";
 
 import "@testing-library/jest-dom";
 
 jest.mock("@/services/api", () => {
 	return {
-		getTask: jest.fn(() => {
-			return Promise.resolve(mockData.task1);
-		})
+		getTask: jest.fn(() => mockImplementation.getTask())
 	};
 });
 

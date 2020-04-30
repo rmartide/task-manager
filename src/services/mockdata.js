@@ -12,6 +12,7 @@ const completeTask = (t) => {
 	result[index].complete = true;
 	return Promise.resolve(result);
 };
+const getTask = () => Promise.resolve(task1);
 
 export const mockData = {
 	task1,
@@ -24,5 +25,6 @@ export const mockData = {
 export const mockImplementation = {
 	getAllTasks,
 	createTasks,
-	completeTask
+	completeTask,
+	getTask
 }
