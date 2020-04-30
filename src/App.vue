@@ -1,6 +1,16 @@
 <template>
 	<div id="app">
-		<Navbar></Navbar>
+		<Navbar>
+			<template #start>
+				<routered-button route="/" icon="home"></routered-button>
+				<div class="md-title">
+					<h3 class="md-title" style="flex: 1">Remember the task</h3>
+				</div>
+			</template>
+			<template #end>
+				<routered-button route="/create" icon="add"></routered-button>
+			</template>
+		</Navbar>
 		<div id="nav">
 			<router-link to="/">Home</router-link>|
 			<router-link to="/about">About</router-link>|

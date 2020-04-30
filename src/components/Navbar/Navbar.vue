@@ -1,13 +1,11 @@
 <template>
 	<md-toolbar class="md-primary">
-		<div class="md-toolbar-row md-toolbar-offset">
+		<div class="md-toolbar-row">
 			<div class="md-toolbar-section-start">
-				<div class="md-title">
-					<h3 class="md-title" style="flex: 1">Remember the task</h3>
-				</div>
+                <slot name="start"></slot>
 			</div>
 			<div class="md-toolbar-section-end">
-                <routered-button route="/create" icon="add"></routered-button>
+                <slot name="end"></slot>
 			</div>
 		</div>
 	</md-toolbar>
