@@ -10,7 +10,7 @@ import api from '@/services/api';
 import { Task } from '@/components';
 
 export default {
-	name: "Deails",
+	name: "Details",
 	props: ['id'],
 	data() {
 		return {

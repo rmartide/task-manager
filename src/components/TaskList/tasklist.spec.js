@@ -1,5 +1,8 @@
 import { render, configure } from "@testing-library/vue";
 import TaskList from "@/components/TaskList/TaskList.vue";
+import Vue from "vue";
+import VueMaterial from "vue-material";
+Vue.use(VueMaterial);
 
 import "@testing-library/jest-dom";
 

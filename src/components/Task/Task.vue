@@ -5,13 +5,19 @@
 				<md-card-header>
 					<div class="md-title" data-spec="taskName">{{ name }}</div>
 				</md-card-header>
-				<md-card-content class="md-card-content">
-					<template v-if="!showTime">
-						<span data-spec="taskDescription">{{ description }}</span>
-						<span data-spec="taskStreak">Streak: {{streak}} days</span>
-						<button data-spec="completeTaskButton" @click="handleClick">Complete</button>
-					</template>
-				</md-card-content>
+				<template v-if="!showTime">
+					<md-card-content class="md-card-content md-alignment-">
+						<div class="md-layout">
+							<span data-spec="taskDescription">{{ description }}</span>
+						</div>
+						<div class="md-layout">
+							<span data-spec="taskStreak">Streak: {{streak}} days</span>
+						</div>
+					</md-card-content>
+						<md-card-actions>
+							<md-button data-spec="completeTaskButton" @click="handleClick">Complete</md-button>
+						</md-card-actions>
+				</template>
 			</md-ripple>
 		</md-card>
 	</div>
@@ -33,8 +39,8 @@ export default {
 		}
 	},
 	methods: {
-		handleClick() {
-			this.$emit('complete-task');
+		handleClick(task) {
+			this.$store.dispatch('completeTask', { task });
 		}
 	}
 };

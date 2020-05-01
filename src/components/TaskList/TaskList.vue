@@ -4,7 +4,7 @@
 			There are no tasks
 		</span>
 		<div v-else-if="tasks && tasks.length !== 0">
-			<Task v-for="(task, index) in tasks" :key="`task_${index}`" data-spec="taskComponent" v-bind="{...task, showTime: true}" @complete-task="onCompleteTask(task)"></Task>
+			<Task @click.native="onClick(task.id)" v-for="(task, index) in tasks" :key="`task_${index}`" data-spec="taskComponent" v-bind="{...task, showTime: true}"></Task>
 		</div>
 	</div>
 </template>
@@ -27,8 +27,8 @@ export default {
 		Task
 	},
 	methods: {
-		onCompleteTask(task) {
-			this.$store.dispatch('completeTask', {task});
+		onClick(id) {
+			this.$router.push(`details/${id}`);
 		}
 	}
 };

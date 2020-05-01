@@ -3,6 +3,9 @@ import { Home } from "@/views";
 import $store from "@/store/index";
 import $router from "@/router/index";
 import { mockData } from "@/services/mockdata";
+import Vue from "vue";
+import VueMaterial from "vue-material";
+Vue.use(VueMaterial);
 
 import "@testing-library/jest-dom";
 

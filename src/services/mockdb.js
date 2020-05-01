@@ -12,7 +12,7 @@ const clearStorage = () => {
 }
 
 const createTask = (task) => {
-    const t = {...task, complete: false}
+    const t = {...task, complete: false, id: tasks.length}
     tasks.push(t);
     saveTasks();
     return Promise.resolve(t);
@@ -30,7 +30,7 @@ const completeTask = (task) => {
 }
 
 const getTask = (id) => {
-    const task = tasks.find(t => t.id === id)
+    const task = tasks.find(t => t.id == id)
     return Promise.resolve(task);
 }
 

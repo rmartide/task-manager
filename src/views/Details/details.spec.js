@@ -2,6 +2,9 @@ import { render, configure, queryByTestId } from "@testing-library/vue";
 import { Details } from "@/views";
 import api from "@/services/api";
 import { mockData, mockImplementation } from "@/services/mockdata";
+import Vue from "vue";
+import VueMaterial from "vue-material";
+Vue.use(VueMaterial);
 
 import "@testing-library/jest-dom";
 

@@ -1,5 +1,8 @@
 import { render, configure, fireEvent } from "@testing-library/vue";
 import Task from "@/components/Task/Task.vue";
+import Vue from "vue";
+import VueMaterial from "vue-material";
+Vue.use(VueMaterial);
 
 import "@testing-library/jest-dom";
 
@@ -19,9 +22,8 @@ describe("Task.vue", () => {
 	});
 
 	it("renders props correctly for showTime = true", () => {
-
-		const name = 'Name';
-		const description = 'Description';
+		const name = "Name";
+		const description = "Description";
 		const streak = 2;
 
 		const { getByTestId, queryByTestId } = render(Task, {
@@ -32,26 +34,20 @@ describe("Task.vue", () => {
 				completed: false,
 				showTime: true
 			}
-		}
-		);
-
+		});
 
 		expect(getByTestId("taskName")).toHaveTextContent(name);
 
 		expect(queryByTestId("taskDescription")).toBeNull();
-		
+
 		expect(queryByTestId("taskStreak")).toBeNull();
 
 		expect(queryByTestId("completeTaskButton")).toBeNull();
-
-
 	});
 
-
 	it("renders props correctly for showTime = false", () => {
-
-		const name = 'Name';
-		const description = 'Description';
+		const name = "Name";
+		const description = "Description";
 		const streak = 2;
 
 		const { getByTestId, queryByTestId } = render(Task, {
@@ -61,26 +57,25 @@ describe("Task.vue", () => {
 				streak: streak,
 				completed: false
 			}
-		}
-		);
-
+		});
 
 		expect(getByTestId("taskName")).toHaveTextContent(name);
 
 		expect(getByTestId("taskDescription")).toHaveTextContent(description);
-		
+
 		expect(getByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
 
 		getByTestId("completeTaskButton");
 	});
 
 	it("Clicking on the complete button emmits complete-task event", async () => {
-
-		const $emit = jest.fn(() => {});
+		const $store = {
+			dispatch: jest.fn(() => {})
+		};
 
 		const { getByTestId } = render(Task, {
 			mocks: {
-				$emit
+				$store
 			}
 		});
 
@@ -88,7 +83,6 @@ describe("Task.vue", () => {
 
 		await fireEvent.click(button);
 
-		expect($emit).toBeCalledWith('complete-task');
-
+		expect($store.dispatch).toBeCalled();
 	});
 });

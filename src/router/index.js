@@ -41,7 +41,8 @@ const routes = [
 		component: async () => {
 			const {Details} = await import(/* webpackChunkName: "create" */ "@/views/");
 			return Details;
-		}
+		},
+		props: true
 	}
 ];
 
