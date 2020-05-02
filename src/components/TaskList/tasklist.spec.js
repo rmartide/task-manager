@@ -58,6 +58,6 @@ describe("TaskList.vue", () => {
 			}
 		});
 
-		expect(getAllByTestId('taskComponent').length).toEqual(tasks.length);
+		expect(getAllByTestId('listItemComponent').length).toEqual(tasks.length);
 	});
 });
