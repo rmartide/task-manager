@@ -1,7 +1,10 @@
-import Task from './Task/Task.vue';
-import TaskForm from './TaskForm/TaskForm.vue';
-import TaskList from './TaskList/TaskList.vue';
-import Navbar from './Navbar/Navbar.vue';
-import ListItem from './ListItem/ListItem.vue';
+// LAZY LOADING
+const TaskList = () => import('./TaskList/TaskList.vue');
+const Task  = () => import('./Task/Task.vue');
+const TaskForm  = () => import('./TaskForm/TaskForm.vue');
+const ListItem = () => import('./ListItem/ListItem.vue');
 
-export { Task, TaskForm, TaskList, Navbar, ListItem };
+// NORMAL LOADING SINCE IT WILL ALWAYS APPEAR
+import  Navbar from './Navbar/Navbar.vue';
+
+export { ListItem, Task, TaskForm, TaskList, Navbar };

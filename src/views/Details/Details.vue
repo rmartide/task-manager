@@ -1,6 +1,6 @@
 <template>
 	<div v-if="task !== null">
-		<h1 data-spec="pageTitle"></h1>
+		<h1 data-spec="pageTitle">{{task.name}}</h1>
 		<Task v-bind="{...task, showTime: false}"></Task>
 	</div>
 </template>

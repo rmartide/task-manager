@@ -1,9 +1,9 @@
 <template>
-	<div>
+	<div class="list-item-container">
 		<md-card md-with-hover class="md-accent">
 			<md-ripple>
 				<md-card-header>
-					<div class="md-title" data-spec="listItemName">{{ name }}</div>
+					<div class="md-title" data-spec="listItemName">{{name}}</div>
 				</md-card-header>
 			</md-ripple>
 		</md-card>
@@ -11,21 +11,19 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
-	name: "ListItem",
-	props: {
-		name: String
-	}
+    name: "ListItem",
+    props: {
+        name: String
+    }
 };
 </script>
 
 <style lang="scss" scoped>
-.md-card {
+
+.list-item-container {
 	width: 320px;
-	margin: 4px;
-	display: inline-block;
-	vertical-align: top;
+	margin: auto;
+	margin-bottom: 10px;
 }
 </style>

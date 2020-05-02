@@ -1,10 +1,26 @@
 <template>
 	<div>
-		<input type="text" data-spec="taskNameInput" v-model="name" />
-		<input type="text" data-spec="taskDescriptionInput" v-model="description" />
-		<button data-spec="createTaskButton" @click="createTask">
-			Create task
-		</button>
+		<div class="md-layout md-alignment-center">
+			<md-card class="md-layout-item md-size-25">
+				<md-card-header>
+					<div class="md-title">Users</div>
+				</md-card-header>
+	
+				<md-card-content>
+					<md-field>
+						<label>Task name</label>
+						<md-input data-spec="taskNameInput" v-model="name"></md-input>
+					</md-field>
+					<md-field>
+						<label>Task description</label>
+						<md-input data-spec="taskDescriptionInput" v-model="description"></md-input>
+					</md-field>
+				</md-card-content>
+				<md-card-actions>
+					<md-button type="submit" class="md-primary" data-spec="createTaskButton" @click="createTask">Create task</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
 	</div>
 </template>
 
@@ -21,8 +37,8 @@ export default {
 		};
 	},
 	methods: {
-		createTask: async function() {
-			this.$store.dispatch('createTask', {name: this.name, description: this.description})
+		createTask: async function () {
+			this.$store.dispatch('createTask', { name: this.name, description: this.description })
 
 			this.$router.push("/");
 		}

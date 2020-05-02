@@ -2,6 +2,9 @@ import { render, configure, fireEvent } from "@testing-library/vue";
 import TaskForm from "@/components/TaskForm/TaskForm.vue";
 import $store from "@/store/index";
 import $router from "@/router/index";
+import Vue from "vue";
+import VueMaterial from "vue-material";
+Vue.use(VueMaterial);
 
 jest.mock("@/store/index");
 jest.mock("@/router/index");
