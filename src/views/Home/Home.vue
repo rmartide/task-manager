@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<h1 data-spec="pageTitle">Tasks to do</h1>
-		<TaskList data-spec="taskList" :tasks="tasks"></TaskList>
+		<TaskList data-spec="taskList" :items="tasks"></TaskList>
 		<button data-spec="addTaskButton" @click="goToCreate">Add task</button>
 		<button @click="clearList">Clear list</button>
 	</div>

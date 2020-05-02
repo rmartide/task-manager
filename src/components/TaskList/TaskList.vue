@@ -2,7 +2,9 @@
 	<div data-spec="taskList">
 		<span data-spec="noTasksText" v-if="tasks && tasks.length === 0">There are no tasks</span>
 		<div v-else-if="tasks && tasks.length !== 0">
-			<ListItem @click.native="onClick(task.id)" v-for="task in tasks" :key="task.id" data-spec="TaskComponent" :name="task.name"></ListItem>
+			<transition-group appear name="custom-classes-transition" enter-active-class="animated fadeIn" tag="div">
+				<ListItem @click.native="onClick(task.id)" v-for="task in tasks" :key="task.id" data-spec="TaskComponent" :name="task.name"></ListItem>
+			</transition-group>
 		</div>
 	</div>
 </template>
@@ -14,12 +16,14 @@ import { ListItem } from '@/components';
 export default {
 	name: "TaskList",
 	props: {
-		tasks: {
+		items: {
 			type: Array
 		}
 	},
 	data() {
-		return {};
+		return {
+			tasks: []
+		};
 	},
 	components: {
 		ListItem
@@ -27,6 +31,16 @@ export default {
 	methods: {
 		onClick(id) {
 			this.$router.push(`details/${id}`);
+		}
+	},
+	mounted() {
+		for (let i = 0; i < this.items.length; i++) {
+			// Where 300 is milliseconds to delay
+			let delay = i * 150;
+
+			setTimeout(function () {
+				this.tasks.push(this.items[i])
+			}.bind(this), delay);
 		}
 	}
 };
