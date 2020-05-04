@@ -2,10 +2,6 @@
 	<div>
 		<div class="md-layout md-alignment-center">
 			<md-card class="md-layout-item md-small-size-50 md-medium-size-33 md-size-25">
-				<md-card-header>
-					<div class="md-title">Users</div>
-				</md-card-header>
-	
 				<md-card-content>
 					<md-field>
 						<label>Task name</label>

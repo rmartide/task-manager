@@ -19,6 +19,8 @@ describe("TaskForm.vue", () => {
 
 		getByTestId("taskDescriptionInput");
 
+		getByTestId("taskDesiredTime");
+
 		getByTestId("createTaskButton");
 	});
 
