@@ -48,9 +48,9 @@ describe("TaskForm.vue", () => {
 
 		await fireEvent.click(button);
 
-		expect($store.dispatch).toHaveBeenCalledWith("createTask", { name, description });
+		expect($store.dispatch).toBeCalledWith("createTask", { name, description });
 
-		expect($router.push).toHaveBeenCalledWith("/");
+		expect($router.push).toBeCalledWith("/");
 	});
 
 	it("From shows error if name is missing and it doesn't call dispatch", async () => {
@@ -68,9 +68,6 @@ describe("TaskForm.vue", () => {
 
 		await fireEvent.click(button);
 
-		expect($store.dispatch).not.toHaveBeenCalled();
-		
-		expect($router.push).not.toHaveBeenCalled();
-
+		expect($store.dispatch).not.toBeCalled();
 	});
 });
