@@ -1,12 +1,10 @@
 import { render, configure, fireEvent } from "@testing-library/vue";
 import TaskForm from "@/components/TaskForm/TaskForm.vue";
-import $store from "@/store/index";
 import $router from "@/router/index";
 import Vue from "vue";
 import VueMaterial from "vue-material";
 Vue.use(VueMaterial);
 
-jest.mock("@/store/index");
 jest.mock("@/router/index");
 
 configure({ testIdAttribute: "data-spec" });
@@ -19,12 +17,15 @@ describe("TaskForm.vue", () => {
 
 		getByTestId("taskDescriptionInput");
 
-		getByTestId("taskDesiredTime");
+		getByTestId("taskDuration");
 
 		getByTestId("createTaskButton");
 	});
 
 	it("method createTask gets called with expected parameters", async () => {
+		const $store = {
+			dispatch: jest.fn(() => {})
+		}
 		const { getByTestId } = render(TaskForm, {
 			mocks: {
 				$router,
@@ -47,8 +48,29 @@ describe("TaskForm.vue", () => {
 
 		await fireEvent.click(button);
 
-		expect($store.dispatch).toHaveBeenCalledWith('createTask', { name, description });
+		expect($store.dispatch).toHaveBeenCalledWith("createTask", { name, description });
 
 		expect($router.push).toHaveBeenCalledWith("/");
+	});
+
+	it("From shows error if name is missing and it doesn't call dispatch", async () => {
+		const $store = {
+			dispatch: jest.fn(() => {})
+		}
+		const { getByTestId } = render(TaskForm, {
+			mocks: {
+				$router,
+				$store
+			}
+		});
+
+		const button = getByTestId("createTaskButton");
+
+		await fireEvent.click(button);
+
+		expect($store.dispatch).not.toHaveBeenCalled();
+		
+		expect($router.push).not.toHaveBeenCalled();
+
 	});
 });
