@@ -13,6 +13,10 @@
 							<label>Task description</label>
 							<md-input data-spec="taskDescriptionInput" v-model="description"></md-input>
 						</md-field>
+						<md-field>
+							<label>Task duration</label>
+							<md-input data-spec="taskDuration" v-model="duration" type="number" min=1></md-input>
+						</md-field>
 					</md-card-content>
 					<md-card-actions>
 						<md-button type="submit" class="md-primary" data-spec="createTaskButton">Create task</md-button>
@@ -33,6 +37,7 @@ export default {
 		return {
 			name: "",
 			description: "",
+			duration: 5,
 			hasMessages: false
 		};
 	},
@@ -43,13 +48,9 @@ export default {
 			this.$router.push("/");
 		},
 		checkForm: function (e) {
-			if (this.name && this.age) {
-				return true;
-			}
-
 			this.errors = [];
 
-			if (!this.name) {
+			if (this.name === "") {
 				this.hasMessages = true;
 			}
 			else {
