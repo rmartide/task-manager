@@ -1,4 +1,4 @@
-import { render, configure, fireEvent } from "@testing-library/vue";
+import { render, configure, fireEvent, getNodeText } from "@testing-library/vue";
 import TaskForm from "@/components/TaskForm/TaskForm.vue";
 import $router from "@/router/index";
 import Vue from "vue";
@@ -17,7 +17,13 @@ describe("TaskForm.vue", () => {
 
 		getByTestId("taskDescriptionInput");
 
-		getByTestId("taskDuration");
+		getByTestId("taskDurationInput");
+
+		getByTestId("taskNameLabel");
+
+		getByTestId("taskDescriptionLabel");
+
+		getByTestId("taskDurationLabel");
 
 		getByTestId("createTaskButton");
 	});
@@ -70,4 +76,14 @@ describe("TaskForm.vue", () => {
 
 		expect($store.dispatch).not.toBeCalled();
 	});
+
+
+	it("The labels contain the correct text",() => {
+		const { getByTestId } = render(TaskForm);
+		
+		expect(getNodeText(getByTestId("taskNameLabel"))).toEqual("Task name");
+		expect(getNodeText(getByTestId("taskDescriptionLabel"))).toEqual("Task description");
+		expect(getNodeText(getByTestId("taskDurationLabel"))).toEqual("Task duration (minutes)");
+	})
+
 });

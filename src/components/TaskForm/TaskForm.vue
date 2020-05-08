@@ -5,17 +5,17 @@
 				<md-card class="md-layout-item md-small-size-50 md-medium-size-33 md-size-25">
 					<md-card-content>
 						<md-field :class="messageClass">
-							<label>Task name</label>
+							<label data-spec="taskNameLabel">Task name</label>
 							<md-input data-spec="taskNameInput" v-model="name"></md-input>
 							<span class="md-error">The name is required</span>
 						</md-field>
 						<md-field>
-							<label>Task description</label>
+							<label data-spec="taskDescriptionLabel">Task description</label>
 							<md-input data-spec="taskDescriptionInput" v-model="description"></md-input>
 						</md-field>
 						<md-field>
-							<label>Task duration</label>
-							<md-input data-spec="taskDuration" v-model="duration" type="number" min=1></md-input>
+							<label data-spec="taskDurationLabel">Task duration (minutes)</label>
+							<md-input data-spec="taskDurationInput" v-model="duration" type="number" min=1></md-input>
 						</md-field>
 					</md-card-content>
 					<md-card-actions>
