@@ -2,7 +2,7 @@
 	<div>
 		<form id="app" @submit="checkForm" action="https://vuejs.org/" method="post">
 			<div class="md-layout md-alignment-center">
-				<md-card class="md-layout-item md-small-size-50 md-medium-size-33 md-size-25">
+				<md-card class="md-layout-item md-xsmall-size-75 md-small-size-50 md-medium-size-33 md-size-25">
 					<md-card-content>
 						<md-field :class="messageClass">
 							<label data-spec="taskNameLabel">Task name</label>
