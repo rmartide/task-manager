@@ -1,5 +1,5 @@
 import { render, configure, fireEvent, getNodeText } from "@testing-library/vue";
-import TaskForm from "@/components/TaskForm/TaskForm.vue";
+import { TaskForm } from "@/components";
 import $router from "@/router/index";
 import Vue from "vue";
 import VueMaterial from "vue-material";
@@ -31,7 +31,7 @@ describe("TaskForm.vue", () => {
 	it("method createTask gets called with expected parameters", async () => {
 		const $store = {
 			dispatch: jest.fn(() => {})
-		}
+		};
 		const { getByTestId } = render(TaskForm, {
 			mocks: {
 				$router,
@@ -62,7 +62,7 @@ describe("TaskForm.vue", () => {
 	it("From shows error if name is missing and it doesn't call dispatch", async () => {
 		const $store = {
 			dispatch: jest.fn(() => {})
-		}
+		};
 		const { getByTestId } = render(TaskForm, {
 			mocks: {
 				$router,
@@ -77,13 +77,11 @@ describe("TaskForm.vue", () => {
 		expect($store.dispatch).not.toBeCalled();
 	});
 
-
-	it("The labels contain the correct text",() => {
+	it("The labels contain the correct text", () => {
 		const { getByTestId } = render(TaskForm);
-		
+
 		expect(getNodeText(getByTestId("taskNameLabel"))).toEqual("Task name");
 		expect(getNodeText(getByTestId("taskDescriptionLabel"))).toEqual("Task description");
 		expect(getNodeText(getByTestId("taskDurationLabel"))).toEqual("Task duration (minutes)");
-	})
-
+	});
 });

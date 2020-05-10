@@ -1,5 +1,8 @@
 import { render, configure } from "@testing-library/vue";
 import { Create } from "@/views";
+import Vue from "vue";
+import VueMaterial from "vue-material";
+Vue.use(VueMaterial);
 
 import "@testing-library/jest-dom";
 

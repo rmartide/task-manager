@@ -1,5 +1,5 @@
 import { render, configure, fireEvent } from "@testing-library/vue";
-import Task from "@/components/Task/Task.vue";
+import {Task} from "@/components";
 import Vue from "vue";
 import VueMaterial from "vue-material";
 Vue.use(VueMaterial);

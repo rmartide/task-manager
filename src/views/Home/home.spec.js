@@ -22,8 +22,6 @@ jest.mock("@/store/index", () => {
 
 jest.mock("@/router/index");
 
-
-
 describe("Home.vue", () => {
 	beforeEach(() => {
 		$store.state.tasks = [];
@@ -46,27 +44,20 @@ describe("Home.vue", () => {
 		getByTestId("noTasksText");
 	});
 
-	it("Component calls the store and passes the list of tasks correctly to child", () => {
+	it("Component calls the store", () => {
+		$store.state.tasks = mockData.tasks;
 
-        $store.state.tasks = mockData.tasks;
-
-		const { queryByTestId } = render(Home, {
+		render(Home, {
 			mocks: {
 				$router,
 				$store
 			}
 		});
 
-        expect($store.dispatch).toBeCalledWith("getUncompletedTasks");
-        
-		expect(queryByTestId("noTasksText")).toBeNull();
+		expect($store.dispatch).toBeCalledWith("getUncompletedTasks");
+	});
 
-    });
-    
-
-    
 	it("Component elements contain the expected text", () => {
-
 		const expectedTitle = "Tasks to do";
 
 		const { getByTestId } = render(Home, {
@@ -77,6 +68,5 @@ describe("Home.vue", () => {
 		});
 
 		expect(getByTestId("pageTitle")).toHaveTextContent(expectedTitle);
-
-	})
+	});
 });

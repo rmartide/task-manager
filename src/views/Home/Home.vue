@@ -9,7 +9,7 @@
 
 <script>
 // @ is an alias to /src
-import {TaskList} from '@/components/';
+import {TaskList} from '@/components';
 import api from '@/services/api';
 
 export default {
