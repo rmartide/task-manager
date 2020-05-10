@@ -41,6 +41,7 @@ describe("Details.vue", () => {
 		expect(api.getTask).toBeCalledWith(task1.id);
 		expect(api.getTask()).resolves.toBe(task1);
 
+		expect(getByTestId("pageTitle")).toHaveTextContent(`Task ${task1.id} details`);
         expect(getByTestId("taskName")).toHaveTextContent(task1.name);
         expect(getByTestId("taskDescription")).toHaveTextContent(task1.description);
 	});

@@ -21,36 +21,12 @@ describe("Task.vue", () => {
 		getByTestId("taskStreak");
 	});
 
-	it("renders props correctly for showTime = true", () => {
+	it("renders props correctly", () => {
 		const name = "Name";
 		const description = "Description";
 		const streak = 2;
 
-		const { getByTestId, queryByTestId } = render(Task, {
-			props: {
-				name: name,
-				description: description,
-				streak: streak,
-				completed: false,
-				showTime: true
-			}
-		});
-
-		expect(getByTestId("taskName")).toHaveTextContent(name);
-
-		expect(queryByTestId("taskDescription")).toBeNull();
-
-		expect(queryByTestId("taskStreak")).toBeNull();
-
-		expect(queryByTestId("completeTaskButton")).toBeNull();
-	});
-
-	it("renders props correctly for showTime = false", () => {
-		const name = "Name";
-		const description = "Description";
-		const streak = 2;
-
-		const { getByTestId, queryByTestId } = render(Task, {
+		const { getByTestId } = render(Task, {
 			props: {
 				name: name,
 				description: description,
