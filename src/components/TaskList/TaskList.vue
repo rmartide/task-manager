@@ -3,7 +3,7 @@
 		<span data-spec="noTasksText" v-if="tasks && tasks.length === 0">There are no tasks</span>
 		<div v-else-if="tasks && tasks.length !== 0">
 			<transition-group appear name="custom-classes-transition" enter-active-class="animated fadeIn" tag="div">
-				<ListItem @click.native="onClick(task.id)" v-for="task in tasks" :key="task.id" data-spec="TaskComponent" :name="task.name"></ListItem>
+				<ListItem @click.native="onClick(task.id)" v-for="task in tasks" :key="task.id" data-spec="listItemComponent" :name="task.name"></ListItem>
 			</transition-group>
 		</div>
 	</div>
@@ -34,13 +34,15 @@ export default {
 		}
 	},
 	mounted() {
-		for (let i = 0; i < this.items.length; i++) {
-			// Where 300 is milliseconds to delay
-			let delay = i * 150;
+		if (this.items) {
+			for (let i = 0; i < this.items.length; i++) {
+				// Where 300 is milliseconds to delay
+				let delay = i * 150;
 
-			setTimeout(function () {
-				this.tasks.push(this.items[i])
-			}.bind(this), delay);
+				setTimeout(function () {
+					this.tasks.push(this.items[i])
+				}.bind(this), delay);
+			}
 		}
 	}
 };

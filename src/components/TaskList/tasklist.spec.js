@@ -1,7 +1,8 @@
 import { render, configure } from "@testing-library/vue";
-import {TaskList} from "@/components";
+import TaskList from "@/components/TaskList/TaskList.vue";
 import Vue from "vue";
 import VueMaterial from "vue-material";
+import { mockData } from "@/services/mockdata";
 Vue.use(VueMaterial);
 
 import "@testing-library/jest-dom";
@@ -30,15 +31,13 @@ describe("TaskList.vue", () => {
 	});
 
 	it("There is no message if there's at least one task", () => {
-		const task = {
-			name: "task",
-			description: "description"
-		};
-		const tasks = [task];
+		const tasks = [mockData.task1];
 
 		const { queryByTestId } = render(TaskList, {
-			props: {
-				tasks
+			data() {
+				return {
+					tasks
+				};
 			}
 		});
 
@@ -46,18 +45,17 @@ describe("TaskList.vue", () => {
 	});
 
 	it("There's one element on the list for each task on the array", () => {
-		const task = {
-			name: "task",
-			description: "description"
-		};
-		const tasks = [task, task, task];
+
+		const tasks = [mockData.task1, mockData.task2, mockData.task3];
 
 		const { getAllByTestId } = render(TaskList, {
-			props: {
-				tasks
+			data() {
+				return {
+					tasks
+				};
 			}
 		});
 
-		expect(getAllByTestId('listItemComponent').length).toEqual(tasks.length);
+		expect(getAllByTestId("listItemComponent").length).toEqual(tasks.length);
 	});
 });
