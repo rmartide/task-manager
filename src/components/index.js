@@ -1,4 +1,4 @@
-// LAZY LOADING
+// ADD LAZY LOADING FOR THIS COMPONENTS
 import ListItem from "./ListItem/ListItem.vue";
 import TaskList from "./TaskList/TaskList.vue";
 import Task from "./Task/Task.vue";
