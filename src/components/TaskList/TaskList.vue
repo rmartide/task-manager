@@ -34,14 +34,19 @@ export default {
 		}
 	},
 	mounted() {
-		if (this.items) {
-			for (let i = 0; i < this.items.length; i++) {
-				// Where 300 is milliseconds to delay
-				let delay = i * 150;
 
-				setTimeout(function () {
-					this.tasks.push(this.items[i])
-				}.bind(this), delay);
+	},
+	watch: {
+		items(newItems) {
+			if (newItems) {
+				for (let i = 0; i < newItems.length; i++) {
+					// Where 300 is milliseconds to delay
+					let delay = i * 150;
+
+					setTimeout(function () {
+						this.tasks.push(newItems[i])
+					}.bind(this), delay);
+				}
 			}
 		}
 	}
