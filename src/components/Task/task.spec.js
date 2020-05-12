@@ -19,6 +19,8 @@ describe("Task.vue", () => {
 		getByTestId("completeTaskButton");
 
 		getByTestId("taskStreak");
+
+		getByTestId("startTimerButton");
 	});
 
 	it("renders props correctly", () => {
@@ -41,7 +43,10 @@ describe("Task.vue", () => {
 
 		expect(getByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
 
-		getByTestId("completeTaskButton");
+		expect(getByTestId("startTimerButton")).toHaveTextContent(`Start timer`);
+
+		expect(getByTestId("completeTaskButton")).toHaveTextContent(`Complete task`);
+
 	});
 
 	it("Clicking on the complete button emmits complete-task event", async () => {
