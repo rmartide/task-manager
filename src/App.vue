@@ -8,6 +8,9 @@
 				</div>
 			</template>
 			<template #end>
+				<md-button @click="changeTheme" class="md-icon-button">
+					<md-icon>color_lens</md-icon>
+				</md-button>
 				<routered-button route="/create" icon="add"></routered-button>
 			</template>
 		</Navbar>
@@ -22,14 +25,17 @@ export default {
 	name: 'App',
 	components: {
 		Navbar
+	},
+	methods: {
+		changeTheme() {
+			const theme = this.$material.theming.theme;
+			this.$material.theming.theme = theme === 'default' ? 'kek' : 'default';
+		}
 	}
 }
 </script>
 
 <style lang="scss">
-
-@import "./style.scss";
-
 #app {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
