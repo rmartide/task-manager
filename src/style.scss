@@ -1,25 +1,7 @@
-/* 
-Vue.material.registerTheme({
-	default: {
-	  primary: {
-		color: 'light-green',
-		hue: 700
-	  },
-	  accent: 'red'
-	},
-	teal: {
-	  primary: 'blue',
-	  accent: 'pink'
-	},
-	purple: {
-	  primary: 'purple',
-	  accent: 'orange'
-	}
-  }) */
 
 @import "~vue-material/dist/theme/engine"; // Import the theme engine
 
-@include md-register-theme("default", (
+@include md-register-theme("kekfault", (
     primary: md-get-palette-color(blue, A200), 
     accent: md-get-palette-color(red, A200) 
   ));

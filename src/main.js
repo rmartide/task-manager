@@ -7,6 +7,7 @@ import '@/ui-components/global';
 import "./style.scss";
 
 Vue.config.productionTip = false;
+Vue.material.theming.theme = 'kek';
 
 new Vue({
 	router,
