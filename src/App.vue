@@ -10,27 +10,8 @@
 			<template #end>
 				<!-- <md-button @click="changeTheme" class="md-icon-button">
 					<md-icon>color_lens</md-icon>
-				</md-button> -->
-				<md-speed-dial md-direction="bottom" class="theme-changer">
-					<md-speed-dial-target class="md-primary md-mini no-box-shadow">
-						<md-icon class="md-morph-initial">color_lens</md-icon>
-						<md-icon class="md-morph-final">edit</md-icon>
-					</md-speed-dial-target>
-
-					<md-speed-dial-content>
-						<md-button class="md-icon-button" @click="changeTheme('kek')">
-							<md-icon>directions</md-icon>
-						</md-button>
-
-						<md-button class="md-icon-button" @click="changeTheme('default-dark')">
-							<md-icon>streetview</md-icon>
-						</md-button>
-
-						<md-button class="md-icon-button" @click="changeTheme('kekfault')">
-							<md-icon>event</md-icon>
-						</md-button>
-					</md-speed-dial-content>
-				</md-speed-dial>
+				</md-button>-->
+				<speed-dial class="theme-changer"></speed-dial>
 				<routered-button route="/create" icon="add"></routered-button>
 			</template>
 		</Navbar>
@@ -45,11 +26,6 @@ export default {
 	name: 'App',
 	components: {
 		Navbar
-	},
-	methods: {
-		changeTheme(theme) {
-			this.$material.theming.theme = theme;
-		}
 	}
 }
 </script>
@@ -60,7 +36,6 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	color: #2c3e50;
 }
 
 #nav {
@@ -82,7 +57,7 @@ export default {
 
 .theme-changer {
 	position: absolute;
-    top: 12px;
-    right: 50px;
+	top: 12px;
+	right: 50px;
 }
 </style>
