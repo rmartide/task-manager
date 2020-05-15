@@ -7,15 +7,15 @@
 
 		<md-speed-dial-content>
 			<md-button class="md-icon-button" @click="changeTheme('kek')">
-				<md-icon>directions</md-icon>
+				<md-icon :class="getTheme === 'kek' ? 'active' : ''">directions</md-icon>
 			</md-button>
 
 			<md-button class="md-icon-button" @click="changeTheme('default-dark')">
-				<md-icon>streetview</md-icon>
+				<md-icon :class="getTheme === 'default-dark' ? 'active' : ''">streetview</md-icon>
 			</md-button>
 
 			<md-button class="md-icon-button" @click="changeTheme('kekfault')">
-				<md-icon>event</md-icon>
+				<md-icon :class="getTheme === 'kekfault' ? 'active' : ''">event</md-icon>
 			</md-button>
 		</md-speed-dial-content>
 	</md-speed-dial>
@@ -24,6 +24,11 @@
 <script>
 export default {
 	name: "SpeedDial",
+	computed: {
+		getTheme() {
+			return this.$material.theming.theme;
+		}
+	},
 	methods: {
 		changeTheme(theme) {
 			this.$material.theming.theme = theme;
@@ -33,7 +38,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.md-toolbar .md-icon-button .md-icon {
-		color: black !important;
-	}
+.md-toolbar .md-icon-button .md-icon.active {
+	color: black !important;
+}
+
+.md-toolbar .md-icon-button .md-icon {
+	color: rgba(0, 0, 0, 0.4) !important;
+}
 </style>
