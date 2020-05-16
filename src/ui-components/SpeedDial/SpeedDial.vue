@@ -6,28 +6,21 @@
 		</md-speed-dial-target>
 
 		<md-speed-dial-content>
-			<md-button class="md-icon-button" @click="changeTheme('kek')">
-				<md-icon :class="getTheme === 'kek' ? 'active' : ''">directions</md-icon>
-			</md-button>
-
-			<md-button class="md-icon-button" @click="changeTheme('default-dark')">
-				<md-icon :class="getTheme === 'default-dark' ? 'active' : ''">streetview</md-icon>
-			</md-button>
-
-			<md-button class="md-icon-button" @click="changeTheme('kekfault')">
-				<md-icon :class="getTheme === 'kekfault' ? 'active' : ''">event</md-icon>
-			</md-button>
+			<speed-dial-content-button icon="directions" theme="kek" @changeTheme="changeTheme"></speed-dial-content-button>
+			<speed-dial-content-button icon="streetview" theme="default-dark" @changeTheme="changeTheme"></speed-dial-content-button>
+			<speed-dial-content-button icon="event" theme="kekfault" @changeTheme="changeTheme"></speed-dial-content-button>
 		</md-speed-dial-content>
 	</md-speed-dial>
 </template>
 
 <script>
+
+import SpeedDialContentButton from './SpeedDialContentButton/SpeedDialContentButton';
+
 export default {
 	name: "SpeedDial",
-	computed: {
-		getTheme() {
-			return this.$material.theming.theme;
-		}
+	components: {
+		SpeedDialContentButton
 	},
 	methods: {
 		changeTheme(theme) {
