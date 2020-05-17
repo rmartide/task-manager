@@ -8,7 +8,7 @@
 		<md-speed-dial-content>
 			<speed-dial-content-button icon="directions" theme="kek" @changeTheme="changeTheme"></speed-dial-content-button>
 			<speed-dial-content-button icon="streetview" theme="default-dark" @changeTheme="changeTheme"></speed-dial-content-button>
-			<speed-dial-content-button icon="event" theme="kekfault" @changeTheme="changeTheme"></speed-dial-content-button>
+			<speed-dial-content-button icon="event" theme="default" @changeTheme="changeTheme"></speed-dial-content-button>
 		</md-speed-dial-content>
 	</md-speed-dial>
 </template>
@@ -16,6 +16,7 @@
 <script>
 
 import SpeedDialContentButton from './SpeedDialContentButton/SpeedDialContentButton';
+import { saveTheme } from '@/services/localdata';
 
 export default {
 	name: "SpeedDial",
@@ -25,6 +26,7 @@ export default {
 	methods: {
 		changeTheme(theme) {
 			this.$material.theming.theme = theme;
+			saveTheme(theme);
 		}
 	}
 };
