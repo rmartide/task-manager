@@ -7,12 +7,12 @@ import {
 	MdRipple,
 	MdLayout,
 	MdField,
-	MdSpeedDial
+	MdSpeedDial,
+	MdProgress
 } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
-/* import 'vue-material/dist/theme/default-dark.css'
-import "vue-material/dist/theme/default.css"; */
+// import "vue-material/dist/theme/default.css";
 
-const components = [MdToolbar, MdButton, MdIcon, MdCard, MdRipple, MdLayout, MdField, MdSpeedDial ];
+const components = [MdToolbar, MdButton, MdIcon, MdCard, MdRipple, MdLayout, MdField, MdSpeedDial, MdProgress];
 
 components.forEach((component) => Vue.use(component));
