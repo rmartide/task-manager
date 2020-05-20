@@ -15,11 +15,12 @@
 						</md-field>
 						<md-field>
 							<label data-spec="taskDurationLabel">Task duration (minutes)</label>
-							<md-input data-spec="taskDurationInput" v-model="duration" type="number" min=1></md-input>
+							<md-input data-spec="taskDurationInput" v-model="duration" type="number" min="1"></md-input>
 						</md-field>
 					</md-card-content>
+					<md-progress-bar class="md-primary" md-mode="indeterminate" v-if="loading" />
 					<md-card-actions>
-						<md-button type="submit" class="md-primary" data-spec="createTaskButton">Create task</md-button>
+						<md-button type="submit" class="md-accent" data-spec="createTaskButton">Create task</md-button>
 					</md-card-actions>
 				</md-card>
 			</div>
@@ -38,13 +39,15 @@ export default {
 			name: "",
 			description: "",
 			duration: 5,
-			hasMessages: false
+			hasMessages: false,
+			loading: false
 		};
 	},
 	methods: {
 		createTask: async function () {
-			this.$store.dispatch('createTask', { name: this.name, description: this.description })
-
+			this.loading = true;
+			await this.$store.dispatch('createTask', { name: this.name, description: this.description })
+			this.loading = false;
 			this.$router.push("/");
 		},
 		checkForm: function (e) {
@@ -68,3 +71,12 @@ export default {
 	}
 };
 </script>
+
+<style lang="scss" scoped>
+.md-progress-bar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+</style>

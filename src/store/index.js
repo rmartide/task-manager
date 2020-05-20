@@ -36,7 +36,7 @@ export default new Vuex.Store({
 		},
 		async createTask({ commit }, t) {
 			const task = await api.createTask(t);
-
+			
 			commit("addTask", { task });
 		},
 

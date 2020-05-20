@@ -15,7 +15,11 @@ const createTask = (task) => {
     const t = {...task, complete: false, id: tasks.length}
     tasks.push(t);
     saveTasks();
-    return Promise.resolve(t);
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(t);
+        }, 2000);
+    })
 }
 
 const getAllTasks = () => {
