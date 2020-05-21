@@ -20,7 +20,9 @@
 					</md-card-content>
 					<md-progress-bar class="md-primary" md-mode="indeterminate" v-if="loading" />
 					<md-card-actions>
-						<md-button type="submit" class="md-accent" data-spec="createTaskButton">Create task</md-button>
+						<md-button data-spec="createTaskButton" class="md-icon-button md-accent">
+							<md-icon>create</md-icon>
+						</md-button>
 					</md-card-actions>
 				</md-card>
 			</div>
