@@ -1,6 +1,9 @@
 <template>
 	<div data-spec="taskList">
-		<span data-spec="noTasksText" v-if="tasks && tasks.length === 0">There are no tasks</span>
+		<div v-if="tasks && tasks.length === 0" class="no-tasks-container">
+			<h3 data-spec="noTasksText">There are no tasks: </h3>
+			<md-button to="/create" class="md-primary" data-spec="createTaksButton">create task</md-button>
+		</div>
 		<div v-else-if="tasks && tasks.length !== 0">
 			<transition-group appear name="custom-classes-transition" enter-active-class="animated fadeIn" tag="div">
 				<ListItem @click.native="onClick(task.id)" v-for="task in tasks" :key="task.id" data-spec="listItemComponent" :name="task.name"></ListItem>
@@ -52,3 +55,11 @@ export default {
 	}
 };
 </script>
+
+<style lang="scss" scoped>
+	.no-tasks-container {
+		display: inline-flex;
+		align-items: center;
+		padding-bottom: 1em;
+	}
+</style>

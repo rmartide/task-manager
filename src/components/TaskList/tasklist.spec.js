@@ -27,6 +27,7 @@ describe("TaskList.vue", () => {
 
 		const expectedValue = "There are no tasks";
 
+		getByTestId('createTaksButton');
 		expect(getByTestId("noTasksText")).toHaveTextContent(expectedValue);
 	});
 
@@ -42,6 +43,7 @@ describe("TaskList.vue", () => {
 		});
 
 		expect(queryByTestId("noTasksText")).toBeNull();
+		expect(queryByTestId('createTaksButton')).toBeNull();
 	});
 
 	it("There's one element on the list for each task on the array", () => {
