@@ -2,7 +2,7 @@
 	<div data-spec="taskList">
 		<div v-if="tasks && tasks.length === 0" class="no-tasks-container">
 			<h3 data-spec="noTasksText">There are no tasks: </h3>
-			<md-button to="/create" class="md-primary" data-spec="createTaksButton">create task</md-button>
+			<md-button @click="goCreate" class="md-primary" data-spec="createTaksButton">create task</md-button>
 		</div>
 		<div v-else-if="tasks && tasks.length !== 0">
 			<transition-group appear name="custom-classes-transition" enter-active-class="animated fadeIn" tag="div">
@@ -34,6 +34,9 @@ export default {
 	methods: {
 		onClick(id) {
 			this.$router.push(`details/${id}`);
+		},
+		goCreate() {
+			this.$router.push(`create`);
 		}
 	},
 	mounted() {
