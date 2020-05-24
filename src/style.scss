@@ -12,8 +12,8 @@
   ));
 
 @include md-register-theme("kek", (
-    primary: md-get-palette-color(yellow, A200), 
-    accent: md-get-palette-color(green, A200) 
+    primary: md-get-palette-color(orange, A200), 
+    accent: md-get-palette-color(purple, A200) 
   ));
 
 @import "~vue-material/dist/theme/all";
