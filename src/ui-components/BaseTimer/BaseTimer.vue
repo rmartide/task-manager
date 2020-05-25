@@ -1,22 +1,29 @@
 <template>
-	<div class="base-timer">
-		<svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-			<g class="base-timer__circle">
-				<circle class="base-timer__path-elapsed" cx="50" cy="50" r="45" />
-				<path
-					:stroke-dasharray="circleDasharray"
-					class="base-timer__path-remaining"
-					:class="remainingPathColor"
-					d="
-            M 50, 50
-            m -45, 0
-            a 45,45 0 1,0 90,0
-            a 45,45 0 1,0 -90,0
-          "
-				/>
-			</g>
-		</svg>
-		<span class="base-timer__label">{{ formattedTimeLeft }}</span>
+	<div class="md-layout md-alignment-center container">
+		<div class="base-timer">
+			<svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+				<g class="base-timer__circle">
+					<circle class="base-timer__path-elapsed" cx="50" cy="50" r="45" />
+					<path
+						:stroke-dasharray="circleDasharray"
+						class="base-timer__path-remaining"
+						:class="remainingPathColor"
+						d="
+	            M 50, 50
+	            m -45, 0
+	            a 45,45 0 1,0 90,0
+	            a 45,45 0 1,0 -90,0
+	          "
+					/>
+				</g>
+			</svg>
+			<span class="base-timer__label">{{ formattedTimeLeft }}</span>
+		</div>
+		<md-button
+			data-spec="startTimerButton"
+			class="md-raised md-accent md-layout-item md-xsmall-size-25 md-small-size-25 md-medium-size-25 md-size-25"
+			@click="startTimer"
+		>Start timer</md-button>
 	</div>
 </template>
 
@@ -96,11 +103,6 @@ export default {
 			}
 		}
 	},
-
-	mounted() {
-		this.startTimer();
-	},
-
 	methods: {
 		onTimesUp() {
 			clearInterval(this.timerInterval);
@@ -114,6 +116,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.container {
+	flex-direction: column;
+}
 .base-timer {
 	position: relative;
 	width: 300px;

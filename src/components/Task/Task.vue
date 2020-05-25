@@ -27,12 +27,6 @@
 		<div class="md-layout md-alignment-center">
 			<BaseTimer></BaseTimer>
 		</div>
-		<div class="md-layout md-alignment-center">
-			<md-button
-				data-spec="startTimerButton"
-				class="md-raised md-accent md-layout-item md-xsmall-size-75 md-small-size-50 md-medium-size-33 md-size-25"
-			>Start timer</md-button>
-		</div>
 	</div>
 </template>
 
