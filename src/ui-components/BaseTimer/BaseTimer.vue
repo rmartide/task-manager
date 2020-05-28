@@ -46,14 +46,13 @@ const COLOR_CODES = {
 	}
 };
 
-const TIME_LIMIT = 20;
-
 export default {
 	name: "BaseTimer",
 	data() {
 		return {
 			timePassed: 0,
-			timerInterval: null
+			timerInterval: null,
+			timeLimit: 20
 		};
 	},
 
@@ -75,12 +74,12 @@ export default {
 		},
 
 		timeLeft() {
-			return TIME_LIMIT - this.timePassed;
+			return this.timeLimit - this.timePassed;
 		},
 
 		timeFraction() {
-			const rawTimeFraction = this.timeLeft / TIME_LIMIT;
-			return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+			const rawTimeFraction = this.timeLeft / this.timeLimit;
+			return rawTimeFraction - (1 / this.timeLimit) * (1 - rawTimeFraction);
 		},
 
 		remainingPathColor() {
