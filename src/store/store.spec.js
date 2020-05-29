@@ -11,7 +11,7 @@ jest.mock("@/services/api", () => {
 	return {
 		getAllTasks: jest.fn(() => mockImplementation.getAllTasks()),
 		createTask: jest.fn((t) => mockImplementation.createTasks(t)),
-		completeTask: jest.fn((t) => mockImplementation.completeTask(t))
+		completeTask: jest.fn((id) => mockImplementation.completeTask(id))
 	};
 });
 
@@ -59,12 +59,12 @@ describe("action tests", () => {
 	it("completeTask", async () => {
 		const expectedTask = mockData.task1;
 
-		await store.dispatch("completeTask", { task: expectedTask });
+		await store.dispatch("completeTask", expectedTask.id);
 
 		expect(api.completeTask).toHaveBeenCalled();
 
 		expect(store.state.tasks.length).toEqual(mockData.tasks.length - 2);
 
-		expect(store.state.tasks.find((t) => t.name === expectedTask.name && t.description === expectedTask.description)).toBeUndefined();
+		expect(store.state.tasks.find((t) => t.id === expectedTask.id)).toBeUndefined();
 	});
 });

@@ -25,7 +25,7 @@
 			>Complete task</md-button>
 		</div>
 		<div class="md-layout md-alignment-center">
-			<BaseTimer></BaseTimer>
+			<BaseTimer @times-up="handleClick"></BaseTimer>
 		</div>
 	</div>
 </template>
@@ -36,14 +36,16 @@
 export default {
 	name: "Task",
 	props: {
+		id: Number,
 		name: String,
 		description: String,
 		streak: Number,
 		complete: Boolean
 	},
 	methods: {
-		handleClick(task) {
-			this.$store.dispatch('completeTask', { task });
+		handleClick: async function() {
+			await this.$store.dispatch('completeTask', this.id)
+			this.$router.push("/");
 		}
 	}
 };

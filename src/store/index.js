@@ -40,8 +40,8 @@ export default new Vuex.Store({
 			commit("addTask", { task });
 		},
 
-		async completeTask({ commit }, { task }) {
-			const tasks = await api.completeTask(task);
+		async completeTask({ commit }, id) {
+			const tasks = await api.completeTask(id);
 
 			commit("loadUncompletedTasks", { tasks });
 		},

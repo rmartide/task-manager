@@ -6,9 +6,9 @@ const tasks = [task1, task2, task3, task4];
 
 const getAllTasks = () => Promise.resolve(tasks);
 const createTasks = (t) => Promise.resolve(t);
-const completeTask = (t) => {
+const completeTask = (id) => {
 	const result = [...tasks];
-	const index = result.findIndex((x) => x.name === t.name && x.description === t.description);
+	const index = result.findIndex((x) => x.id === id);
 	result[index].complete = true;
 	return Promise.resolve(result);
 };

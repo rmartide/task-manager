@@ -1,10 +1,13 @@
 import { render, configure, fireEvent } from "@testing-library/vue";
 import {Task} from "@/components";
+import $router from "@/router/index";
 import Vue from "vue";
 import VueMaterial from "vue-material";
 Vue.use(VueMaterial);
 
 import "@testing-library/jest-dom";
+
+jest.mock("@/router/index");
 
 configure({ testIdAttribute: "data-spec" });
 
@@ -20,7 +23,7 @@ describe("Task.vue", () => {
 
 		getByTestId("taskStreak");
 
-		getByTestId("startTimerButton");
+		// getByTestId("startTimerButton");
 	});
 
 	it("renders props correctly", () => {
@@ -43,7 +46,7 @@ describe("Task.vue", () => {
 
 		expect(getByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
 
-		expect(getByTestId("startTimerButton")).toHaveTextContent(`Start timer`);
+		// expect(getByTestId("startTimerButton")).toHaveTextContent(`Start timer`);
 
 		expect(getByTestId("completeTaskButton")).toHaveTextContent(`Complete task`);
 
@@ -56,7 +59,8 @@ describe("Task.vue", () => {
 
 		const { getByTestId } = render(Task, {
 			mocks: {
-				$store
+				$store,
+				$router
 			}
 		});
 
@@ -65,5 +69,7 @@ describe("Task.vue", () => {
 		await fireEvent.click(button);
 
 		expect($store.dispatch).toBeCalled();
+		expect($router.push).toBeCalledWith("/");
+
 	});
 });
