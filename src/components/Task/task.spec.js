@@ -3,7 +3,9 @@ import {Task} from "@/components";
 import $router from "@/router/index";
 import Vue from "vue";
 import VueMaterial from "vue-material";
+import '@/ui-components/global';
 Vue.use(VueMaterial);
+
 
 import "@testing-library/jest-dom";
 
@@ -23,7 +25,7 @@ describe("Task.vue", () => {
 
 		getByTestId("taskStreak");
 
-		// getByTestId("startTimerButton");
+		getByTestId("startTimerButton");
 	});
 
 	it("renders props correctly", () => {
@@ -46,7 +48,7 @@ describe("Task.vue", () => {
 
 		expect(getByTestId("taskStreak")).toHaveTextContent(`Streak: ${streak} days`);
 
-		// expect(getByTestId("startTimerButton")).toHaveTextContent(`Start timer`);
+		expect(getByTestId("startTimerButton")).toHaveTextContent(`Start timer`);
 
 		expect(getByTestId("completeTaskButton")).toHaveTextContent(`Complete task`);
 
