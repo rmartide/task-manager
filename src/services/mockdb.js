@@ -12,7 +12,7 @@ const clearStorage = () => {
 }
 
 const createTask = (task) => {
-    const t = {...task, complete: false, id: tasks.length}
+    const t = {...task, complete: false, id: tasks.length, remainingDuration: task.duration * 60}
     tasks.push(t);
     saveTasks();
     return new Promise((resolve) => {

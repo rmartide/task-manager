@@ -40,7 +40,8 @@ export default {
 		name: String,
 		description: String,
 		streak: Number,
-		complete: Boolean
+		complete: Boolean,
+		remainingDuration: Number
 	},
 	methods: {
 		handleClick: async function() {
