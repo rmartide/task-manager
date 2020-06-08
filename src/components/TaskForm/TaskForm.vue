@@ -48,7 +48,7 @@ export default {
 	methods: {
 		createTask: async function () {
 			this.loading = true;
-			await this.$store.dispatch('createTask', { name: this.name, description: this.description })
+			await this.$store.dispatch('createTask', { name: this.name, description: this.description, duration: this.duration })
 			this.loading = false;
 			this.$router.push("/");
 		},

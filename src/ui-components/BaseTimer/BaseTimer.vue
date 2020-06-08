@@ -48,11 +48,14 @@ const COLOR_CODES = {
 
 export default {
 	name: "BaseTimer",
+	props: {
+		remainingDuration: Number
+	},
 	data() {
 		return {
 			timePassed: 0,
 			timerInterval: null,
-			timeLimit: 20
+			timeLimit: this.remainingDuration
 		};
 	},
 
@@ -100,7 +103,10 @@ export default {
 			if (newValue === 0) {
 				this.onTimesUp();
 			}
-		}
+		},
+		remainingDuration(newValue) {
+			this.timeLimit = newValue;
+		}		
 	},
 	methods: {
 		onTimesUp() {

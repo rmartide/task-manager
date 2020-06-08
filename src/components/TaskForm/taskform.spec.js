@@ -41,6 +41,7 @@ describe("TaskForm.vue", () => {
 
 		const name = "Name";
 		const description = "Description";
+		const duration = 5;
 
 		const taskNameInput = getByTestId("taskNameInput");
 
@@ -54,7 +55,7 @@ describe("TaskForm.vue", () => {
 
 		await fireEvent.click(button);
 
-		expect($store.dispatch).toBeCalledWith("createTask", { name, description });
+		expect($store.dispatch).toBeCalledWith("createTask", { name, description, duration });
 
 		expect($router.push).toBeCalledWith("/");
 	});

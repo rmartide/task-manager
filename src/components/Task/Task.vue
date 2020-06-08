@@ -25,7 +25,7 @@
 			>Complete task</md-button>
 		</div>
 		<div class="md-layout md-alignment-center">
-			<BaseTimer @times-up="handleClick"></BaseTimer>
+			<BaseTimer @times-up="handleClick" :remainingDuration="remainingDuration"></BaseTimer>
 		</div>
 	</div>
 </template>
