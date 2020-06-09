@@ -115,7 +115,10 @@ export default {
 		},
 
 		startTimer() {
-			this.timerInterval = setInterval(() => (this.timePassed += 1), 1000);
+			this.timerInterval = setInterval(() => {
+				this.timePassed += 1;
+				this.$emit('time-passed', this.timeLimit - this.timePassed);
+				}, 1000);
 		}
 	}
 };

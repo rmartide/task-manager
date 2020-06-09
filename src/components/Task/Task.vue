@@ -25,7 +25,7 @@
 			>Complete task</md-button>
 		</div>
 		<div class="md-layout md-alignment-center">
-			<BaseTimer @times-up="handleClick" :remainingDuration="remainingDuration"></BaseTimer>
+			<BaseTimer @times-up="handleClick" @time-passed="updateRemainingDuration" :remainingDuration="remainingDuration"></BaseTimer>
 		</div>
 	</div>
 </template>
@@ -47,6 +47,9 @@ export default {
 		handleClick: async function() {
 			await this.$store.dispatch('completeTask', this.id)
 			this.$router.push("/");
+		},
+		updateRemainingDuration: async function(timePassed) {
+			console.log(timePassed)
 		}
 	}
 };
