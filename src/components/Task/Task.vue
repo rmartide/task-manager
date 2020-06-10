@@ -49,7 +49,7 @@ export default {
 			this.$router.push("/");
 		},
 		updateRemainingDuration: async function(timePassed) {
-			console.log(timePassed)
+			await this.$store.dispatch('updateRemainingDuration', { id: this.id, remainingDuration: timePassed });
 		}
 	}
 };

@@ -46,6 +46,10 @@ export default new Vuex.Store({
 			commit("loadUncompletedTasks", { tasks });
 		},
 
+		updateRemainingDuration({}, {id, remainingDuration}) {
+			api.updateTask(id, {remainingDuration});
+		},
+
 		clearTasks({ commit }) {
 			mockdb.clearStorage();
 

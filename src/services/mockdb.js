@@ -38,10 +38,20 @@ const getTask = (id) => {
     return Promise.resolve(task);
 }
 
+const updateTask = (id, properties) => {
+    const index = tasks.findIndex(t => t.id == id)
+    tasks[index] = {
+        ...tasks[index],
+        ...properties
+    }
+    saveTasks();
+}
+
 export default {
     createTask,
     getAllTasks,
     completeTask,
     clearStorage,
-    getTask
+    getTask,
+    updateTask
 }
