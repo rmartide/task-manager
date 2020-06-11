@@ -2,8 +2,8 @@
 	<div class="home">
 		<h1 data-spec="pageTitle">Tasks to do</h1>
 		<TaskList data-spec="taskList" :items="tasks"></TaskList>
-		<button data-spec="addTaskButton" @click="goToCreate">Add task</button>
-		<button @click="clearList">Clear list</button>
+		<md-button class="md-accent" data-spec="addTaskButton" @click="goToCreate">Add task</md-button>
+		<md-button class="md-accent"  @click="clearList">Clear list</md-button>
 	</div>
 </template>
 
