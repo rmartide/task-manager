@@ -85,4 +85,22 @@ describe("TaskForm.vue", () => {
 		expect(getNodeText(getByTestId("taskDescriptionLabel"))).toEqual("Task description");
 		expect(getNodeText(getByTestId("taskDurationLabel"))).toEqual("Task duration (minutes)");
 	});
+
+	it("When it receives an id it renders the values", () => {
+		const { task1 } = mockData;
+		const { getByTestId } = render(Details, {
+			data() {
+				return {
+					task: task1
+				};
+			},
+			props: {
+				id: task1.id
+			}
+		});
+
+		expect(getByTestId("taskNameInput")).toHaveTextContent(task1.name);
+		expect(getByTestId("taskDescriptionInput")).toHaveTextContent(task1.description);
+		expect(getByTestId("taskDurationInput")).toHaveTextContent(task1.duration);
+	})
 });

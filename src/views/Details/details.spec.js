@@ -20,9 +20,9 @@ describe("Details.vue", () => {
 	it("component renders", () => {
 		const { queryByTestId } = render(Details);
 
-        expect(queryByTestId("pageTitle")).toBeNull();
-        expect(queryByTestId("taskName")).toBeNull();
-        expect(queryByTestId("taskDescription")).toBeNull();
+		expect(queryByTestId("pageTitle")).toBeNull();
+		expect(queryByTestId("taskName")).toBeNull();
+		expect(queryByTestId("taskDescription")).toBeNull();
 	});
 
 	it("When it receives an id it renders the correct task", () => {
@@ -42,7 +42,9 @@ describe("Details.vue", () => {
 		expect(api.getTask()).resolves.toBe(task1);
 
 		expect(getByTestId("pageTitle")).toHaveTextContent(`Task ${task1.id} details`);
-        expect(getByTestId("taskName")).toHaveTextContent(task1.name);
-        expect(getByTestId("taskDescription")).toHaveTextContent(task1.description);
+		expect(getByTestId("taskName")).toHaveTextContent(task1.name);
+		expect(getByTestId("taskDescription")).toHaveTextContent(task1.description);
+		getByTestId("deleteTaskButton");
+		getByTestId("editTaskButton");
 	});
 });
