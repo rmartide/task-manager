@@ -20,18 +20,33 @@
 		<div class="md-layout md-alignment-center">
 			<md-button
 				data-spec="completeTaskButton"
-				@click="handleClick"
+				@click="completeTask"
 				class="md-raised md-primary md-layout-item md-xsmall-size-75 md-small-size-50 md-medium-size-33 md-size-25"
 			>Complete task</md-button>
 		</div>
 		<div class="md-layout md-alignment-center">
-			<BaseTimer @times-up="handleClick" @time-passed="updateRemainingDuration" :remainingDuration="remainingDuration"></BaseTimer>
+			<BaseTimer @times-up="completeTask" @time-passed="updateRemainingDuration" :remainingDuration="remainingDuration"></BaseTimer>
+		</div>
+		<div class="md-layout md-alignment-center">
+			<md-button
+				data-spec="deleteTaskButton"
+				@click="deleteTask"
+				class="md-raised md-primary md-layout-item md-xsmall-size-75 md-small-size-50 md-medium-size-33 md-size-25"
+			>Delete task</md-button>
+		</div>
+		<div class="md-layout md-alignment-center">
+			<md-button
+				data-spec="editTaskButton"
+				@click="editTask"
+				class="md-raised md-primary md-layout-item md-xsmall-size-75 md-small-size-50 md-medium-size-33 md-size-25"
+			>Edit task</md-button>
 		</div>
 	</div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Swal from 'sweetalert2';
 
 export default {
 	name: "Task",
@@ -44,11 +59,32 @@ export default {
 		remainingDuration: Number
 	},
 	methods: {
-		handleClick: async function() {
+		completeTask: async function () {
 			await this.$store.dispatch('completeTask', this.id)
 			this.$router.push("/");
 		},
-		updateRemainingDuration: async function(timePassed) {
+		editTask: async function () {
+
+		},
+		deleteTask: async function () {
+			const result = await Swal.fire({
+				title: 'Are you sure?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
+			});
+			if (result.value) {
+				Swal.fire(
+					'Deleted!',
+					'Your file has been deleted.',
+					'success'
+				)
+			}
+		},
+		updateRemainingDuration: async function (timePassed) {
 			await this.$store.dispatch('updateRemainingDuration', { id: this.id, remainingDuration: timePassed });
 		}
 	}
