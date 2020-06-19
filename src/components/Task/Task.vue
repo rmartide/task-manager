@@ -68,7 +68,7 @@ export default {
 		},
 		deleteTask: async function () {
 			const result = await Swal.fire({
-				title: 'Are you sure?',
+				title: 'Are you sure you want to delete the task?',
 				text: "You won't be able to revert this!",
 				icon: 'warning',
 				showCancelButton: true,
@@ -77,11 +77,12 @@ export default {
 				confirmButtonText: 'Yes, delete it!'
 			});
 			if (result.value) {
-				Swal.fire(
+				const result = await Swal.fire(
 					'Deleted!',
 					'Your file has been deleted.',
 					'success'
-				)
+				);
+				this.$router.push("/");
 			}
 		},
 		updateRemainingDuration: async function (timePassed) {

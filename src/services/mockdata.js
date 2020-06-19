@@ -13,6 +13,12 @@ const completeTask = (id) => {
 	return Promise.resolve(result);
 };
 const getTask = () => Promise.resolve(task1);
+const deleteTask = (id) => {
+	const index = result.findIndex((x) => x.id === id);
+	tasks.splice(0, index);
+}
+
+const initTasks = () => tasks = [task1, task2, task3, task4];
 
 export const mockData = {
 	task1,
@@ -26,5 +32,7 @@ export const mockImplementation = {
 	getAllTasks,
 	createTasks,
 	completeTask,
-	getTask
+	getTask,
+	deleteTask,
+	initTasks
 }

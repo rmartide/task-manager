@@ -11,13 +11,16 @@ jest.mock("@/services/api", () => {
 	return {
 		getAllTasks: jest.fn(() => mockImplementation.getAllTasks()),
 		createTask: jest.fn((t) => mockImplementation.createTasks(t)),
-		completeTask: jest.fn((id) => mockImplementation.completeTask(id))
+		completeTask: jest.fn((id) => mockImplementation.completeTask(id)),
+		deleteTask: jest.fn((id) => mockImplementation.deleteTask(id)),
+		initTasks: jest.fn(() => mockImplementation.initTasks())
 	};
 });
 
 describe("action tests", () => {
 	beforeEach(() => {
 		store.state.tasks = [];
+		api.initTasks();
 	});
 
 	it("getAllTasks", async () => {
@@ -67,4 +70,15 @@ describe("action tests", () => {
 
 		expect(store.state.tasks.find((t) => t.id === expectedTask.id)).toBeUndefined();
 	});
+
+	it("deleteTask", async () => {
+		const task1 = mockData.task1;
+
+		await store.dispatch("deleteTask", task.id);
+
+		await store.dispatch("getAllTasks");
+
+		expect(store.state.tasks.length).toEqual(3);
+
+	})
 });
