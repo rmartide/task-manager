@@ -18,6 +18,11 @@ const deleteTask = (id) => {
 	tasks.splice(0, index);
 }
 
+const editTask = (task) => {
+	const index = result.findIndex((x) => x.id === task.id);
+	result[index] = task;
+}
+
 const initTasks = () => tasks = [task1, task2, task3, task4];
 
 export const mockData = {
@@ -34,5 +39,6 @@ export const mockImplementation = {
 	completeTask,
 	getTask,
 	deleteTask,
-	initTasks
+	initTasks,
+	editTask
 }
