@@ -13,7 +13,8 @@ jest.mock("@/services/api", () => {
 		createTask: jest.fn((t) => mockImplementation.createTasks(t)),
 		completeTask: jest.fn((id) => mockImplementation.completeTask(id)),
 		deleteTask: jest.fn((id) => mockImplementation.deleteTask(id)),
-		initTasks: jest.fn(() => mockImplementation.initTasks())
+		initTasks: jest.fn(() => mockImplementation.initTasks()),
+		editTask: jest.fn(() => mockImplementation.editTask(task))
 	};
 });
 
@@ -80,5 +81,21 @@ describe("action tests", () => {
 
 		expect(store.state.tasks.length).toEqual(3);
 
+	});
+
+	it("editTask", async () => {
+		const task1 = mockData.task1;
+
+		task1.name = 'Testing edit task name';
+		taska.description = 'Testing edit task description';
+
+		await store.dispatch("editTask", task);
+
+		await store.dispatch("getAllTasks");
+
+		const task = store.state.tasks.find(t => t.id === task1.id);
+
+		expect(task.description).toEqual(task1.description);
+		expect(task.name).toEqual(task1.name);
 	})
 });
