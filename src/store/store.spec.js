@@ -1,4 +1,3 @@
-import { render } from "@testing-library/vue";
 import store from "@/store/index";
 import api from "@/services/api";
 import { mockData, mockImplementation } from "@/services/mockdata";
@@ -14,7 +13,7 @@ jest.mock("@/services/api", () => {
 		completeTask: jest.fn((id) => mockImplementation.completeTask(id)),
 		deleteTask: jest.fn((id) => mockImplementation.deleteTask(id)),
 		initTasks: jest.fn(() => mockImplementation.initTasks()),
-		editTask: jest.fn(() => mockImplementation.editTask(task))
+		updateTask: jest.fn((task) => mockImplementation.updateTask(task))
 	};
 });
 
@@ -75,7 +74,9 @@ describe("action tests", () => {
 	it("deleteTask", async () => {
 		const task1 = mockData.task1;
 
-		await store.dispatch("deleteTask", task.id);
+		await store.dispatch("deleteTask", task1.id);
+
+		expect(api.deleteTask).toHaveBeenCalled();
 
 		await store.dispatch("getAllTasks");
 
@@ -87,9 +88,11 @@ describe("action tests", () => {
 		const task1 = mockData.task1;
 
 		task1.name = 'Testing edit task name';
-		taska.description = 'Testing edit task description';
+		task1.description = 'Testing edit task description';
 
-		await store.dispatch("editTask", task);
+		await store.dispatch("editTask", task1);
+
+		expect(api.updateTask).toHaveBeenCalled();
 
 		await store.dispatch("getAllTasks");
 
