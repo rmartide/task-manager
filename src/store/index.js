@@ -36,24 +36,28 @@ export default new Vuex.Store({
 		},
 		async createTask({ commit }, t) {
 			const task = await api.createTask(t);
-			
+
 			commit("addTask", { task });
 		},
-
 		async completeTask({ commit }, id) {
 			const tasks = await api.completeTask(id);
 
 			commit("loadUncompletedTasks", { tasks });
 		},
-
-		updateRemainingDuration({}, {id, remainingDuration}) {
-			api.updateTask(id, {remainingDuration});
+		updateRemainingDuration({}, { id, remainingDuration }) {
+			api.updateTask(id, { remainingDuration });
 		},
-
 		clearTasks({ commit }) {
 			mockdb.clearStorage();
 
 			commit("clearTasks");
+		},
+		async editTask({ }, task) {
+			const {id, ...rest} = task;
+			await api.updateTask(id, rest);
+		},
+		async deleteTask({}, id) {
+			await api.deleteTask(id);
 		}
 	},
 	modules: {}
