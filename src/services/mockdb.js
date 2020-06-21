@@ -45,6 +45,14 @@ const updateTask = (id, properties) => {
         ...properties
     }
     saveTasks();
+    return Promise.resolve();
+}
+
+const deleteTask = (id) => {
+	const index = tasks.findIndex((x) => x.id === id);
+    tasks.splice(index, 1);
+    saveTasks();
+    return Promise.resolve();
 }
 
 export default {
@@ -53,5 +61,6 @@ export default {
     completeTask,
     clearStorage,
     getTask,
-    updateTask
+    updateTask,
+    deleteTask
 }
