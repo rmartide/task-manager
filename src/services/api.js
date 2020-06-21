@@ -5,7 +5,8 @@ const api = {
 	createTask: driver.createTask,
 	completeTask: driver.completeTask,
 	getTask: driver.getTask,
-	updateTask: driver.updateTask
+	updateTask: driver.updateTask,
+	deleteTask: driver.deleteTask
 };
 
 export default api;
