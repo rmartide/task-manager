@@ -3,7 +3,11 @@ import { TaskForm } from "@/components";
 import $router from "@/router/index";
 import Vue from "vue";
 import VueMaterial from "vue-material";
+import { mockData } from "@/services/mockdata";
+
 Vue.use(VueMaterial);
+
+import "@testing-library/jest-dom";
 
 jest.mock("@/router/index");
 
@@ -86,21 +90,14 @@ describe("TaskForm.vue", () => {
 		expect(getNodeText(getByTestId("taskDurationLabel"))).toEqual("Task duration (minutes)");
 	});
 
-	it("When it receives an id it renders the values", () => {
+	fit("When it receives an id it renders the values", async () => {
 		const { task1 } = mockData;
-		const { getByTestId } = render(Details, {
-			data() {
-				return {
-					task: task1
-				};
-			},
-			props: {
-				id: task1.id
-			}
-		});
+		const component = render(TaskForm);
+		const {getByTestId} = component;
+		await component.updateProps({task: task1});
 
-		expect(getByTestId("taskNameInput")).toHaveTextContent(task1.name);
-		expect(getByTestId("taskDescriptionInput")).toHaveTextContent(task1.description);
-		expect(getByTestId("taskDurationInput")).toHaveTextContent(task1.duration);
-	})
+		expect(getByTestId("taskNameInput").value).toEqual(task1.name);
+		expect(getByTestId("taskDescriptionInput").value).toEqual(task1.description);
+		expect(+getByTestId("taskDurationInput").value).toEqual(task1.duration);
+	});
 });

@@ -36,6 +36,7 @@ import api from "@/services/api";
 
 export default {
 	name: "TaskForm",
+	props: ['task'],
 	data() {
 		return {
 			name: "",
@@ -68,6 +69,16 @@ export default {
 		messageClass() {
 			return {
 				'md-invalid': this.hasMessages
+			}
+		}
+	},
+	watch: {
+		task(newTask) {
+			if (newTask) {
+				const { name, description, duration } = newTask;
+				this.name = name;
+				this.description = description;
+				this.duration = duration;
 			}
 		}
 	}
