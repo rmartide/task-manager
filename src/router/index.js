@@ -33,6 +33,18 @@ const routes = [
 		}
 	},
 	{
+		path: "/create/:id",
+		name: "CreateWithId",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: async () => {
+			const {Create} = await import(/* webpackChunkName: "create" */ "@/views/");
+			return Create;
+		},
+		props: true
+	},
+	{
 		path: "/details/:id",
 		name: "Details",
 		// route level code-splitting
