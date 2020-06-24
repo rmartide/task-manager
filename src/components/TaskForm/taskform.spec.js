@@ -88,16 +88,49 @@ describe("TaskForm.vue", () => {
 		expect(getNodeText(getByTestId("taskNameLabel"))).toEqual("Task name");
 		expect(getNodeText(getByTestId("taskDescriptionLabel"))).toEqual("Task description");
 		expect(getNodeText(getByTestId("taskDurationLabel"))).toEqual("Task duration (minutes)");
+		expect(getByTestId("createTaskButton").textContent).toContain("create");
 	});
 
-	fit("When it receives an id it renders the values", async () => {
+	it("When it receives an task it renders the values", async () => {
 		const { task1 } = mockData;
 		const component = render(TaskForm);
-		const {getByTestId} = component;
-		await component.updateProps({task: task1});
+		const { getByTestId } = component;
+		await component.updateProps({ task: task1 });
 
 		expect(getByTestId("taskNameInput").value).toEqual(task1.name);
 		expect(getByTestId("taskDescriptionInput").value).toEqual(task1.description);
 		expect(+getByTestId("taskDurationInput").value).toEqual(task1.duration);
+	});
+
+	it("When it receives an task the button text changes to update", async () => {
+		const { task1 } = mockData;
+		const component = render(TaskForm);
+		const { getByTestId } = component;
+		expect(getByTestId("createTaskButton").textContent).toContain("create");
+		await component.updateProps({ task: task1 });
+		expect(getByTestId("createTaskButton").textContent).toContain("update");
+	});
+
+	it("When it receives an task the button calls to updateTask", async () => {
+		const { task1 } = mockData;
+		const $store = {
+			dispatch: jest.fn(() => {})
+		};
+		const component = render(TaskForm, {
+			mocks: {
+				$router,
+				$store
+			}
+		});
+		const { getByTestId } = component;
+
+		await component.updateProps({ task: task1 });
+
+		const button = getByTestId("createTaskButton");
+
+		await fireEvent.click(button);
+
+		expect($store.dispatch).toBeCalledWith("updateTask", task1);
+		expect($router.push).toBeCalledWith("/");
 	});
 });
