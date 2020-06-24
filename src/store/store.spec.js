@@ -84,13 +84,13 @@ describe("action tests", () => {
 
 	});
 
-	it("editTask", async () => {
+	it("updateTask", async () => {
 		const task1 = mockData.task1;
 
 		task1.name = 'Testing edit task name';
 		task1.description = 'Testing edit task description';
 
-		await store.dispatch("editTask", task1);
+		await store.dispatch("updateTask", task1);
 
 		expect(api.updateTask).toHaveBeenCalled();
 
