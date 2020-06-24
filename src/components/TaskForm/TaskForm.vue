@@ -21,7 +21,7 @@
 					<md-progress-bar class="md-primary" md-mode="indeterminate" v-if="loading" />
 					<md-card-actions>
 						<md-button data-spec="createTaskButton" class="md-icon-button md-accent" @click="checkForm">
-							<md-icon>create</md-icon>
+							<md-icon>{{buttonText}}</md-icon>
 						</md-button>
 					</md-card-actions>
 				</md-card>
@@ -53,6 +53,12 @@ export default {
 			this.loading = false;
 			this.$router.push("/");
 		},
+		updateTask: async function () {
+			this.loading = true;
+			await this.$store.dispatch('updateTask', { ...this.task, name: this.name, description: this.description, duration: this.duration })
+			this.loading = false;
+			this.$router.push("/");
+		},
 		checkForm: function (e) {
 			this.errors = [];
 
@@ -60,7 +66,7 @@ export default {
 				this.hasMessages = true;
 			}
 			else {
-				this.createTask();
+				this.task ? this.updateTask() : this.createTask();
 			}
 			e.preventDefault();
 		}
@@ -70,6 +76,9 @@ export default {
 			return {
 				'md-invalid': this.hasMessages
 			}
+		},
+		buttonText() {
+			return this.task ? 'update' : 'create'
 		}
 	},
 	watch: {
