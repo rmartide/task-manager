@@ -52,7 +52,7 @@ export default new Vuex.Store({
 
 			commit("clearTasks");
 		},
-		async editTask({ }, task) {
+		async updateTask({ }, task) {
 			const {id, ...rest} = task;
 			await api.updateTask(id, rest);
 		},
