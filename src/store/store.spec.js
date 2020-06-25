@@ -73,6 +73,10 @@ describe("action tests", () => {
 
 	it("deleteTask", async () => {
 		const task1 = mockData.task1;
+		
+		await store.dispatch("getAllTasks");
+
+		expect(store.state.tasks.length).toEqual(4);
 
 		await store.dispatch("deleteTask", task1.id);
 
