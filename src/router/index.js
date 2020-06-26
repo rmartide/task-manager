@@ -58,12 +58,10 @@ const routes = [
 	}
 ];
 
-console.log(process.env);
-
 const router = new VueRouter({
 	mode: "history",
 	routes,
-	base: process.env.NODE_ENV === "production" ? `/${process.env.CI_PROJECT_NAME}/` : "/"
+	base: process.env.NODE_ENV === "production" ? `/${process.env.BASE_URL}/` : "/"
 });
 
 export default router;
