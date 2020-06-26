@@ -1,13 +1,34 @@
 <template>
 	<div id="app">
-		<div id="nav">
-			<router-link to="/">Home</router-link>|
-			<router-link to="/about">About</router-link>|
-			<router-link to="/create">Create</router-link>
-		</div>
+		<Navbar>
+			<template #start>
+				<routered-button route="/" icon="home"></routered-button>
+				<div class="md-title">
+					<h3 class="md-title" style="flex: 1">Remember the task</h3>
+				</div>
+			</template>
+			<template #end>
+				<!-- <md-button @click="changeTheme" class="md-icon-button">
+					<md-icon>color_lens</md-icon>
+				</md-button>-->
+				<speed-dial class="theme-changer"></speed-dial>
+				<routered-button route="/create" icon="add"></routered-button>
+			</template>
+		</Navbar>
 		<router-view />
 	</div>
 </template>
+
+<script>
+import { Navbar } from '@/components';
+
+export default {
+	name: 'App',
+	components: {
+		Navbar
+	}
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -15,7 +36,6 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	color: #2c3e50;
 }
 
 #nav {
@@ -29,5 +49,15 @@
 			color: #42b983;
 		}
 	}
+}
+
+.no-box-shadow {
+	box-shadow: 0 0 0 !important;
+}
+
+.theme-changer {
+	position: absolute;
+	top: 12px;
+	right: 50px;
 }
 </style>

@@ -23,3 +23,13 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import driver from '../../../src/services/driver';
+
+Cypress.Commands.add("createTask", (name, description) => {
+    driver.createTask({name, description});
+});
+
+Cypress.Commands.add("clearStorage", () => {
+    driver.clearStorage();
+})
