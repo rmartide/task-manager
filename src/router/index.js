@@ -1,10 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import {Home} from "@/views/";
+import { Home } from "@/views/";
 
 Vue.use(VueRouter);
 
 const routes = [
+	{
+		path: '*',
+		name: "Any",
+		component: Home
+	},
 	{
 		path: "/",
 		name: "Home",
@@ -17,7 +22,7 @@ const routes = [
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		component: async () => {
-			const {About} = await import(/* webpackChunkName: "about" */ "@/views/");
+			const { About } = await import(/* webpackChunkName: "about" */ "@/views/");
 			return About;
 		}
 	},
@@ -28,7 +33,7 @@ const routes = [
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		component: async () => {
-			const {Create} = await import(/* webpackChunkName: "create" */ "@/views/");
+			const { Create } = await import(/* webpackChunkName: "create" */ "@/views/");
 			return Create;
 		}
 	},
@@ -39,7 +44,7 @@ const routes = [
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		component: async () => {
-			const {Create} = await import(/* webpackChunkName: "create" */ "@/views/");
+			const { Create } = await import(/* webpackChunkName: "create" */ "@/views/");
 			return Create;
 		},
 		props: true
@@ -51,7 +56,7 @@ const routes = [
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		component: async () => {
-			const {Details} = await import(/* webpackChunkName: "create" */ "@/views/");
+			const { Details } = await import(/* webpackChunkName: "create" */ "@/views/");
 			return Details;
 		},
 		props: true
@@ -60,7 +65,8 @@ const routes = [
 
 const router = new VueRouter({
 	mode: "history",
-  routes
-})
+	routes,
+	base: process.env.NODE_ENV === "production" ? `/${process.env.BASE_URL}/` : "/"
+});
 
-export default router
+export default router;
